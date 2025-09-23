@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Encryption = () => {
   return (
-    <div className='flex flex-col relative items-center justify-center w-full h-[800px] overflow-hidden bg-black'>
+    <div className='flex flex-col relative items-center justify-center w-full min-h-[800px] overflow-hidden bg-black py-16'>
       {/* Background video */}
       <div className='absolute inset-0 w-full h-full z-0'>
         <video
@@ -53,7 +53,7 @@ const Encryption = () => {
           variants={slideInFromTop}
           initial="hidden"
           animate="visible"
-          className='text-[40px] md:text-[50px] font-medium text-center text-white'
+          className='text-[40px] md:text-[50px] font-medium text-center text-white mb-4'
         >
           <span>
             Performance
@@ -63,6 +63,30 @@ const Encryption = () => {
             Security
           </span>
         </motion.div>
+
+        {/* Subtitle */}
+        <motion.div
+          variants={slideInFromTop}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.2 }}
+          className='text-lg md:text-xl text-gray-300 text-center mb-6 max-w-2xl'
+        >
+          Building robust applications with cutting-edge technologies
+        </motion.div>
+
+         {/* Call to Action */}
+         <motion.div
+           variants={slideInFromTop}
+           initial="hidden"
+           animate="visible"
+           transition={{ delay: 0.4 }}
+           className='mt-8'
+         >
+           {/* <button className='bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25'>
+             Explore My Work
+           </button> */}
+         </motion.div>
 
       </div>
     </div>
