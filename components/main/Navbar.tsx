@@ -15,6 +15,8 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileMenuRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll effect for navbar background
   useEffect(() => {
@@ -54,6 +56,9 @@ const Navbar: React.FC = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
+      }
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+        setProfileOpen(false);
       }
     };
 
@@ -112,63 +117,55 @@ const Navbar: React.FC = () => {
     }
   `;
 
-  // Compute active index for segmented control indicator
-  const activeIndex = Math.max(0, navLinks.findIndex(l => l.href.substring(1) === activeSection));
+  // Previously used for segmented control; retained for reference but unused now
 
   return (
     <nav className={navbarClasses}>
       <div className="max-w-[1280px] mx-auto h-full flex justify-between items-center relative">
-        {/* Logo */}
-        <a 
-          href="#about-about" 
-          className="flex items-center group"
-          onClick={(e) => {
-            e.preventDefault();
-            handleLinkClick('#about-about');
-          }}
-        >
-          <div className="relative overflow-hidden rounded-full bg-black/20 backdrop-blur-sm w-16 h-16 flex items-center justify-center border border-purple-500/30">
-            <NeonLogo />
-          </div>
-          <span className="hidden md:block ml-3 font-bold text-gray-300 group-hover:text-white transition-colors duration-200">
-            Lanson Johnson
-          </span>
-        </a>
+        {/* Left side placeholder removed per request */}
+        <div />
 
         {/* Centered Desktop Navigation (Segmented Control) */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-          <div className="relative flex items-center justify-between w-[520px] h-[54px] p-1 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-2xl shadow-[0_10px_30px_rgba(42,14,97,0.35)]">
-            {/* Active indicator */}
-            <span
-              className="absolute top-1 bottom-1 rounded-full bg-gradient-to-br from-purple-700/40 to-cyan-600/40 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.15),0_8px_30px_rgba(123,77,255,0.35)] transition-all duration-300 ease-out"
-              style={{
-                left: `${(100 / navLinks.length) * (activeIndex < 0 ? 1 : activeIndex)}%`,
-                width: `${100 / navLinks.length}%`
-              }}
-            />
-
-            {navLinks.map((link, index) => {
-              const isActive = activeSection === link.href.substring(1) || (activeSection === '' && index === 1);
-              return (
+        {/* Desktop Profile Dropdown with name */}
+        <div className="hidden md:flex items-center gap-3 ml-auto" ref={profileMenuRef}>
+          <button
+            onClick={() => setProfileOpen(v => !v)}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-sm border border-purple-500/30 hover:bg-white/5 transition"
+            aria-haspopup="menu"
+            aria-expanded={profileOpen}
+            aria-label="Open navigation menu"
+          >
+            <div className="relative overflow-hidden rounded-full w-8 h-8 flex items-center justify-center">
+              <NeonLogo />
+            </div>
+            <span className="font-semibold text-gray-200">Lanson Johnson</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`w-4 h-4 transition-transform ${profileOpen ? 'rotate-180' : ''}`}>
+              <path fillRule="evenodd" d="M12 14.25a.75.75 0 0 1-.53-.22l-4.5-4.5a.75.75 0 1 1 1.06-1.06L12 12.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-.53.22z" clipRule="evenodd" />
+            </svg>
+          </button>
+          {profileOpen && (
+            <div className="absolute right-4 top-[70px] w-56 rounded-xl border border-white/15 bg-[rgba(3,0,20,0.95)] backdrop-blur-xl shadow-xl p-2">
+              {navLinks.map(link => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick(link.href);
+                    setProfileOpen(false);
                   }}
-                  className={`relative z-10 flex-1 text-center select-none px-2 py-2 text-[15px] font-semibold transition-colors duration-200 rounded-full ${isActive ? 'text-white' : 'text-white/85 hover:text-white'}`}
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activeSection === link.href.substring(1) ? 'bg-white/10 text-white' : 'text-gray-200 hover:text-white hover:bg-white/5'}`}
                 >
                   {link.name}
                 </a>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right-side Social Links (Desktop) */}
         <div className="hidden md:flex items-center space-x-3">
-          {Socials.map(social => (
+          {Socials.filter(s => !['Instagram','Facebook','Discord'].includes(s.name)).map(social => (
             <a
               key={social.name}
               href={social.href ?? '#'}
@@ -263,7 +260,7 @@ const Navbar: React.FC = () => {
             <div className="px-6 py-6 border-t border-gray-700">
               <p className="text-gray-400 text-sm mb-4 font-medium">Connect with me</p>
               <div className="flex space-x-4">
-                {Socials.map((social, index) => (
+                {Socials.filter(s => !['Instagram','Facebook','Discord'].includes(s.name)).map((social, index) => (
                   <a
                     key={social.name}
                     href={social.href ?? '#'}

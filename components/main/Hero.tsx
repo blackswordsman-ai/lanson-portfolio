@@ -21,7 +21,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className='relative z-10'>
+      <div className='relative z-10 pt-6 md:pt-0'>
         <HeroContent />
       </div>
     </div>
