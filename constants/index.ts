@@ -157,12 +157,22 @@ export const Skill_data = [
       icon: "logos:nextjs-icon",
       size: 80,
     },
+    {
+      skill_name: "Bootstrap",
+      icon: "logos:bootstrap",
+      size: 80,
+    }
   ];
   
   export const Backend_skill = [
     {
       skill_name: "Node js",
       icon: "logos:nodejs-icon",
+      size: 80,
+    },
+    {
+      skill_name: "Web3",
+      icon: "logos:web3js",
       size: 80,
     },
     {
@@ -190,29 +200,18 @@ export const Skill_data = [
       icon: "logos:mysql-icon",
       size: 80,
     },
+  {
+    skill_name: "Python",
+    icon: "logos:python",
+    size: 80,
+  },
   ];
   
   export const Full_stack = [
-    {
-      skill_name: "React Native",
-      icon: "logos:react",
-      size: 80,
-    },
-    {
-      skill_name: "Docker",
-      icon: "logos:docker-icon",
-      size: 80,
-    },
-    {
-      skill_name: "Figma",
-      icon: "logos:figma",
-      size: 80,
-    },
-    {
-      skill_name: "Bootstrap",
-      icon: "logos:bootstrap",
-      size: 80,
-    },
+   
+  
+   
+   
   ];
   
   
@@ -223,21 +222,19 @@ export const Skill_data = [
       icon: "logos:ethereum",
       size: 80,
     },
-    {
-      skill_name: "Web3",
-      icon: "logos:web3js",
-      size: 80,
-    },
+    
     {
       skill_name: "MetaMask",
       icon: "logos:metamask-icon",
       size: 80,
     },
+  
     {
-      skill_name: "Vercel",
-      icon: "logos:vercel-icon",
+      skill_name: "Postman",
+      icon: "logos:postman-icon",
       size: 80,
     },
+    
   ];
 
   export const Deployment_skill = [
@@ -259,6 +256,11 @@ export const Skill_data = [
     {
       skill_name: "GitLab",
       icon: "logos:gitlab",
+      size: 80,
+    },
+    {
+      skill_name: "Docker",
+      icon: "logos:docker-icon",
       size: 80,
     },
   ];

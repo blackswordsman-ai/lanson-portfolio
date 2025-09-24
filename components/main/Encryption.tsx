@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Encryption = () => {
   return (
-    <div className='flex flex-col relative items-center justify-center w-full min-h-[800px] overflow-hidden bg-black py-16'>
+    <div className='flex flex-col relative items-center justify-center w-full min-h-[400px] overflow-hidden bg-black py-8 md:py-12'>
       {/* Background video */}
       <div className='absolute inset-0 w-full h-full z-0'>
         <video
