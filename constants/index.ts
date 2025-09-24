@@ -1,3 +1,9 @@
+export interface Skill {
+  skill_name: string;
+  icon: string;
+  size: number;
+}
+
 export const Skill_data = [
     {
       skill_name: "Html 5",
@@ -103,154 +109,157 @@ export const Skill_data = [
   export const Frontend_skill = [
     {
       skill_name: "Html 5",
-      Image: "/html.png",
-      width: 80,
-      height: 80,
+      icon: "logos:html-5",
+      size: 80,
     },
     {
       skill_name: "Css",
-      Image: "/css.png",
-      width: 80,
-      height: 80,
+      icon: "logos:css-3",
+      size: 80,
     },
     {
       skill_name: "Java Script",
-      Image: "/js.png",
-      width: 65,
-      height: 65,
+      icon: "logos:javascript",
+      size: 80,
     },
     {
       skill_name: "Tailwind Css",
-      Image: "/tailwind.png",
-      width: 80,
-      height: 80,
+      icon: "logos:tailwindcss-icon",
+      size: 80,
     },
     {
       skill_name: "Material UI",
-      Image: "/mui.png",
-      width: 80,
-      height: 80,
+      icon: "logos:material-ui",
+      size: 80,
     },
     {
       skill_name: "React",
-      Image: "/react.png",
-      width: 80,
-      height: 80,
+      icon: "logos:react",
+      size: 80,
     },
     {
       skill_name: "Redux",
-      Image: "/redux.png",
-      width: 80,
-      height: 80,
+      icon: "logos:redux",
+      size: 80,
     },
     {
       skill_name: "React Query",
-      Image: "/reactquery.png",
-      width: 80,
-      height: 80,
+      icon: "logos:react-query-icon",
+      size: 80,
     },
     {
       skill_name: "Type Script",
-      Image: "/ts.png",
-      width: 80,
-      height: 80,
+      icon: "logos:typescript-icon",
+      size: 80,
     },
     {
       skill_name: "Next js 13",
-      Image: "/next.png",
-      width: 80,
-      height: 80,
+      icon: "logos:nextjs-icon",
+      size: 80,
     },
   ];
   
   export const Backend_skill = [
     {
       skill_name: "Node js",
-      Image: "/node-js.png",
-      width: 80,
-      height: 80,
+      icon: "logos:nodejs-icon",
+      size: 80,
     },
     {
       skill_name: "Express js",
-      Image: "/express.png",
-      width: 80,
-      height: 80,
+      icon: "logos:express",
+      size: 80,
     },
     {
       skill_name: "Mongo db",
-      Image: "/mongodb.png",
-      width: 40,
-      height: 40,
+      icon: "logos:mongodb-icon",
+      size: 80,
     },
     {
       skill_name: "Fire base",
-      Image: "/Firebase.png",
-      width: 55,
-      height: 55,
+      icon: "logos:firebase",
+      size: 80,
     },
     {
       skill_name: "Postger SQL",
-      Image: "/postger.png",
-      width: 70,
-      height: 70,
+      icon: "logos:postgresql",
+      size: 80,
     },
     {
       skill_name: "My SQL",
-      Image: "/mysql.png",
-      width: 70,
-      height: 70,
-    },
-    {
-      skill_name: "Prisma",
-      Image: "/prisma.webp",
-      width: 70,
-      height: 70,
-    },
-    {
-      skill_name: "Graphql",
-      Image: "/graphql.png",
-      width: 80,
-      height: 80,
+      icon: "logos:mysql-icon",
+      size: 80,
     },
   ];
   
   export const Full_stack = [
     {
       skill_name: "React Native",
-      Image: "/ReactNative .png",
-      width: 70,
-      height: 70,
-    },
-    {
-      skill_name: "Tauri",
-      Image: "/tauri.svg",
-      width: 70,
-      height: 70,
+      icon: "logos:react",
+      size: 80,
     },
     {
       skill_name: "Docker",
-      Image: "/docker.webp",
-      width: 70,
-      height: 70,
+      icon: "logos:docker-icon",
+      size: 80,
     },
-  
     {
       skill_name: "Figma",
-      Image: "/figma.png",
-      width: 50,
-      height: 50,
+      icon: "logos:figma",
+      size: 80,
     },
-  
+    {
+      skill_name: "Bootstrap",
+      icon: "logos:bootstrap",
+      size: 80,
+    },
   ];
   
   
   
   export const Other_skill = [
     {
-      skill_name: "Go",
-      Image: "/go.png",
-      width: 60,
-      height: 60,
+      skill_name: "Blockchain",
+      icon: "logos:ethereum",
+      size: 80,
+    },
+    {
+      skill_name: "Web3",
+      icon: "logos:web3js",
+      size: 80,
+    },
+    {
+      skill_name: "MetaMask",
+      icon: "logos:metamask-icon",
+      size: 80,
+    },
+    {
+      skill_name: "Vercel",
+      icon: "logos:vercel-icon",
+      size: 80,
+    },
+  ];
+
+  export const Deployment_skill = [
+    {
+      skill_name: "AWS",
+      icon: "logos:aws",
+      size: 80,
+    },
+    {
+      skill_name: "Netlify",
+      icon: "logos:netlify",
+      size: 80,
+    },
+    {
+      skill_name: "GitHub",
+      icon: "logos:github-icon",
+      size: 80,
+    },
+    {
+      skill_name: "GitLab",
+      icon: "logos:gitlab",
+      size: 80,
     },
   ];
   

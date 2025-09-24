@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Socials } from '@/constants';
+import NeonLogo from '../sub/NeonLogo';
 
 const navLinks = [
   { name: 'About Me', href: '#about-me' },
@@ -126,18 +127,11 @@ const Navbar: React.FC = () => {
             handleLinkClick('#about-about');
           }}
         >
-          <div className="relative overflow-hidden rounded-full">
-            <Image
-              src="/NavLogo.png"
-              alt="Web-Chain Dev Logo"
-              width={70}
-              height={70}
-              className="cursor-pointer transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12"
-              priority
-            />
+          <div className="relative overflow-hidden rounded-full bg-black/20 backdrop-blur-sm w-16 h-16 flex items-center justify-center border border-purple-500/30">
+            <NeonLogo />
           </div>
           <span className="hidden md:block ml-3 font-bold text-gray-300 group-hover:text-white transition-colors duration-200">
-            Web-Chain Dev
+            Lanson Johnson
           </span>
         </a>
 

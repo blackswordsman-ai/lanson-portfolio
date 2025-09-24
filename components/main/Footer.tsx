@@ -46,7 +46,7 @@ const Footer = () => {
             className="lg:col-span-1"
           >
             <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4">
-              Web-Chain Dev
+              Lanson Johnson
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed mb-6">
               Building the future with modern web technologies. Creating digital experiences that matter.
