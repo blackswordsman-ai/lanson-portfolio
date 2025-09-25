@@ -1,11 +1,11 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Icon } from '@iconify/react';
 import { Socials } from '@/constants';
-import NeonLogo from '../sub/NeonLogo';
 
 const navLinks = [
-  { name: 'About Me', href: '#about-me' },
+  { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#project' },
 ];
@@ -98,14 +98,20 @@ const Navbar: React.FC = () => {
   const handleLinkClick = (href: string) => {
     setMenuOpen(false);
     
-    // Smooth scroll to section
-    const element = document.getElementById(href.substring(1));
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
+    // Check if it's an external page or a section
+    if (href.startsWith('/')) {
+      // Navigate to a new page
+      window.location.href = href;
+    } else {
+      // Smooth scroll to section
+      const element = document.getElementById(href.substring(1));
+      if (element) {
+        const offsetTop = element.offsetTop - 80; // Account for navbar height
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -135,9 +141,6 @@ const Navbar: React.FC = () => {
             aria-expanded={profileOpen}
             aria-label="Open navigation menu"
           >
-            <div className="relative overflow-hidden rounded-full w-8 h-8 flex items-center justify-center">
-              <NeonLogo />
-            </div>
             <span className="font-semibold text-gray-200">Lanson Johnson</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`w-4 h-4 transition-transform ${profileOpen ? 'rotate-180' : ''}`}>
               <path fillRule="evenodd" d="M12 14.25a.75.75 0 0 1-.53-.22l-4.5-4.5a.75.75 0 1 1 1.06-1.06L12 12.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-.53.22z" clipRule="evenodd" />
@@ -165,6 +168,20 @@ const Navbar: React.FC = () => {
 
         {/* Right-side Social Links (Desktop) */}
         <div className="hidden md:flex items-center space-x-3">
+          {/* GitHub Icon */}
+          <a
+            href="https://github.com/your-username"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full transition-all duration-200 hover:bg-white/10 hover:scale-110"
+            aria-label="Visit GitHub"
+          >
+            <Icon 
+              icon="mdi:github" 
+              className="w-5 h-5 text-gray-300 hover:text-white transition-colors duration-200" 
+            />
+          </a>
+          
           {Socials.filter(s => !['Instagram','Facebook','Discord'].includes(s.name)).map(social => (
             <a
               key={social.name}
@@ -260,6 +277,21 @@ const Navbar: React.FC = () => {
             <div className="px-6 py-6 border-t border-gray-700">
               <p className="text-gray-400 text-sm mb-4 font-medium">Connect with me</p>
               <div className="flex space-x-4">
+                {/* GitHub Icon for Mobile */}
+                <a
+                  href="https://github.com/blackswordsman-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-200 hover:scale-110"
+                  aria-label="Visit GitHub"
+                >
+                  <Icon 
+                    icon="mdi:github" 
+                    className="w-6 h-6 text-gray-300 hover:text-white transition-colors duration-200" 
+                  />
+                </a>
+                
                 {Socials.filter(s => !['Instagram','Facebook','Discord'].includes(s.name)).map((social, index) => (
                   <a
                     key={social.name}
@@ -287,6 +319,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
+
     </nav>
   );
 };

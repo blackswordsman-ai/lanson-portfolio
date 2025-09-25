@@ -6,44 +6,52 @@ import Image from 'next/image'
 
 const Encryption = () => {
   return (
-    <div className='flex flex-col relative items-center justify-center w-full min-h-[400px] overflow-hidden bg-black py-8 md:py-12'>
-      {/* Background video */}
-      <div className='absolute inset-0 w-full h-full z-0'>
+    <div className='relative w-full min-h-[500px] p-8 md:p-12'>
+      {/* Background video with content overlay */}
+      <div className='relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/30'>
         <video
           loop
           muted
           autoPlay
           playsInline
           preload='auto'
-          className='w-full h-full object-cover opacity-70'
-          src='/encryption.webm'
+          className='w-full h-full object-cover opacity-75'
+          src='/PORTAL~2.webm'
         />
-      </div>
-
-      {/* Main content */}
-      <div className='relative z-10 flex flex-col items-center justify-center'>
-        {/* Lock icon above text */}
+        
+        {/* Neutral overlay */}
+        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none' />
+        
+        {/* Content overlay inside video */}
+        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center pt-55'>
+        {/* Lock icon positioned correctly */}
         <motion.div
           variants={slideInFromTop}
           initial="hidden"
           animate="visible"
-          className='mb-6 group cursor-pointer'
+          className='mb-8 group cursor-pointer relative'
         >
-          <Image 
-            src="/LockTop.png"
-            alt='Lock Top'
-            width={50}
-            height={50}
-            className='translate-y-5 transition-all duration-200 group-hover:translate-y-11 relative z-20'
-          />
-          <Image 
-            src="/LockMain.png"
-            alt='Lock Main'
-            width={70}
-            height={70}
-            className='z-10 relative'
-          />
-
+          {/* Lock top positioned like in image */}
+          <div className='relative z-20'>
+            <Image 
+              src="/LockTop.png"
+              alt='Lock Top'
+              width={50}
+              height={50}
+              className='absolute -top-8 left-1/2 transform -translate-x-1/2 transition-all duration-200 group-hover:-translate-y-2'
+            />
+          </div>
+          
+          {/* Lock main body */}
+          <div className='relative z-10'>
+            <Image 
+              src="/LockMain.png"
+              alt='Lock Main'
+              width={70}
+              height={70}
+              className='transition-all duration-200'
+            />
+          </div>
 
         </motion.div>
 
@@ -88,6 +96,7 @@ const Encryption = () => {
            </button> */}
          </motion.div>
 
+        </div>
       </div>
     </div>
   )

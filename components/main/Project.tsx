@@ -23,6 +23,18 @@ const projects = [
     title: 'Learning Management System',
     description: 'LMS platform with courses, lessons, quizzes, progress tracking, and instructor dashboards.',
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Stripe']
+  },
+  {
+    src: '/MoneyManagemnt.png', //add image
+    title: 'Personal Finance Manager',
+    description: 'Comprehensive money management app with expense tracking, budget planning, investment monitoring, and financial analytics dashboard.',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Chart.js', 'Express']
+  },
+  {
+    src: '/email-communication.png', //add image
+    title: 'Email Communication Platform',
+    description: 'Advanced email management system with templates, automation, analytics, and team collaboration features for business communications.',
+    technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Nodemailer', 'Socket.io']
   }
 ]
 
@@ -87,34 +99,6 @@ const Project = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          variants={slideInFromTop}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.8 }}
-          className='mt-16 text-center'
-        >
-          <p className='text-gray-300 mb-6'>
-            Want to see more of my work?
-          </p>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-            <a
-              href='https://github.com'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25'
-            >
-              View on GitHub
-            </a>
-            <a
-              href='#contact'
-              className='border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300'
-            >
-              Get In Touch
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   )
