@@ -3,15 +3,11 @@
     import React, { useState, useRef, Suspense } from 'react';
     import { Canvas, useFrame } from '@react-three/fiber';
     import { Points, PointMaterial, Preload } from '@react-three/drei';
-    // @ts-ignore
+    // @ts-expect-error - maath import path issue
     import * as random from 'maath/random/dist/maath-random.esm';
     import * as THREE from 'three';
 
-    interface StarBackgroundProps {
-    // any props you want to pass to Points
-    }
-
-    const StarBackground: React.FC<StarBackgroundProps> = (props) => {
+    const StarBackground: React.FC = () => {
     // Corrected: useRef, typed to THREE.Points
     const ref = useRef<THREE.Points>(null);
 
@@ -34,7 +30,6 @@
             positions={positions}   // corrected prop name
             stride={3}
             frustumCulled={false}    // optional, depending on effect
-            {...props}
         >
             <PointMaterial
             transparent={true}
