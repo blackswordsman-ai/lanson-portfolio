@@ -48,19 +48,9 @@ const NeonLogo = () => {
       // Pulsing glow intensity
       const pulseIntensity = 1 + Math.sin(time * 2) * 0.3
 
-      // Outer glow (larger, more transparent)
+      // Outer glow (larger, more transparent, darker)
       ctx.save()
       ctx.shadowColor = '#00ffff'
-      ctx.shadowBlur = 20 * pulseIntensity
-      ctx.shadowOffsetX = 0
-      ctx.shadowOffsetY = 0
-      ctx.fillStyle = gradient
-      ctx.fillRect(x, y, width, height)
-      ctx.restore()
-
-      // Middle glow
-      ctx.save()
-      ctx.shadowColor = '#ff00ff'
       ctx.shadowBlur = 15 * pulseIntensity
       ctx.shadowOffsetX = 0
       ctx.shadowOffsetY = 0
@@ -68,10 +58,20 @@ const NeonLogo = () => {
       ctx.fillRect(x, y, width, height)
       ctx.restore()
 
-      // Inner glow (main letter)
+      // Middle glow (darker)
+      ctx.save()
+      ctx.shadowColor = '#ff00ff'
+      ctx.shadowBlur = 10 * pulseIntensity
+      ctx.shadowOffsetX = 0
+      ctx.shadowOffsetY = 0
+      ctx.fillStyle = gradient
+      ctx.fillRect(x, y, width, height)
+      ctx.restore()
+
+      // Inner glow (main letter, darker)
       ctx.save()
       ctx.shadowColor = '#ffffff'
-      ctx.shadowBlur = 10 * pulseIntensity
+      ctx.shadowBlur = 6 * pulseIntensity
       ctx.shadowOffsetX = 0
       ctx.shadowOffsetY = 0
       ctx.fillStyle = gradient
@@ -83,10 +83,10 @@ const NeonLogo = () => {
     const gradient = ctx.createLinearGradient(0, 0, size, size)
     const hueShift = Math.sin(time * 0.5) * 30 // Subtle color shifting
     
-    gradient.addColorStop(0, `hsl(${180 + hueShift}, 100%, 50%)`) // Animated Cyan
-    gradient.addColorStop(0.3, `hsl(${300 + hueShift}, 100%, 50%)`) // Animated Magenta
-    gradient.addColorStop(0.6, `hsl(${320 + hueShift}, 100%, 50%)`) // Animated Pink
-    gradient.addColorStop(1, `hsl(${320 + hueShift}, 100%, 50%)`) // Animated Pink
+    gradient.addColorStop(0, `hsl(${180 + hueShift}, 80%, 40%)`) // Darker Animated Cyan
+    gradient.addColorStop(0.3, `hsl(${300 + hueShift}, 80%, 40%)`) // Darker Animated Magenta
+    gradient.addColorStop(0.6, `hsl(${320 + hueShift}, 80%, 40%)`) // Darker Animated Pink
+    gradient.addColorStop(1, `hsl(${320 + hueShift}, 80%, 40%)`) // Darker Animated Pink
 
     // Draw the letter L
     const strokeWidth = 8
@@ -120,7 +120,7 @@ const NeonLogo = () => {
       ctx.globalAlpha = sparkleOpacity
       ctx.fillStyle = '#ffffff'
       ctx.shadowColor = '#00ffff'
-      ctx.shadowBlur = 8 * sparkleOpacity
+      ctx.shadowBlur = 5 * sparkleOpacity
       ctx.beginPath()
       ctx.arc(x, y, sparkleSize, 0, Math.PI * 2)
       ctx.fill()
@@ -140,10 +140,10 @@ const NeonLogo = () => {
       const particleOpacity = Math.sin(time * 2 + i) * 0.3 + 0.4
       
       ctx.save()
-      ctx.globalAlpha = particleOpacity
+      ctx.globalAlpha = particleOpacity * 0.7
       ctx.fillStyle = '#00ffff'
       ctx.shadowColor = '#00ffff'
-      ctx.shadowBlur = 5
+      ctx.shadowBlur = 3
       ctx.beginPath()
       ctx.arc(particleX, particleY, 1, 0, Math.PI * 2)
       ctx.fill()

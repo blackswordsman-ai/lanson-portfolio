@@ -6,24 +6,24 @@ import Image from 'next/image'
 
 const Encryption = () => {
   return (
-    <div className='relative w-full min-h-[500px] p-8 md:p-12'>
+        <div className='relative w-full min-h-[400px] sm:min-h-[500px]'>
       {/* Background video with content overlay */}
-      <div className='relative w-full h-full rounded-xl overflow-hidden shadow-2xl shadow-black/30'>
+      <div className='relative w-full h-full overflow-hidden'>
         <video
           loop
           muted
           autoPlay
           playsInline
           preload='auto'
-          className='w-full h-full object-cover opacity-75'
+          className='w-full h-full object-cover opacity-50'
           src='/PORTAL~2.webm'
         />
         
-        {/* Neutral overlay */}
-        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none' />
+        {/* Pink/Purple overlay with decreased intensity */}
+        <div className='absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-black/40 pointer-events-none' />
         
         {/* Content overlay inside video */}
-        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center pt-55'>
+        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center pt-20 sm:pt-32 md:pt-40'>
         {/* Lock icon positioned correctly */}
         <motion.div
           variants={slideInFromTop}
@@ -56,13 +56,13 @@ const Encryption = () => {
         </motion.div>
 
 
-        {/* Performance & Security Text */}
-        <motion.div
-          variants={slideInFromTop}
-          initial="hidden"
-          animate="visible"
-          className='text-[40px] md:text-[50px] font-medium text-center text-white mb-4'
-        >
+            {/* Performance & Security Text */}
+            <motion.div
+              variants={slideInFromTop}
+              initial="hidden"
+              animate="visible"
+              className='text-2xl sm:text-3xl md:text-[40px] lg:text-[50px] font-medium text-center text-white mb-4 px-4'
+            >
           <span>
             Performance
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 ml-2 mr-2">
@@ -72,14 +72,14 @@ const Encryption = () => {
           </span>
         </motion.div>
 
-        {/* Subtitle */}
-        <motion.div
-          variants={slideInFromTop}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.2 }}
-          className='text-lg md:text-xl text-gray-300 text-center mb-6 max-w-2xl'
-        >
+            {/* Subtitle */}
+            <motion.div
+              variants={slideInFromTop}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2 }}
+              className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 text-center mb-6 max-w-2xl px-4'
+            >
           Building robust applications with cutting-edge technologies
         </motion.div>
 

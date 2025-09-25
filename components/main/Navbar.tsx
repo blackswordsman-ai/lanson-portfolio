@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
   };
 
   const navbarClasses = `
-    fixed top-0 w-full h-[65px] z-50 transition-all duration-300 ease-in-out px-4 md:px-10
+    fixed top-0 w-full h-[60px] sm:h-[65px] z-50 transition-all duration-300 ease-in-out px-4 sm:px-6 md:px-10
     ${isScrolled 
       ? 'bg-[rgba(3,0,20,0.85)] backdrop-blur-lg shadow-xl shadow-[#2A0E61]/50' 
       : 'bg-transparent'
@@ -141,13 +141,13 @@ const Navbar: React.FC = () => {
             aria-expanded={profileOpen}
             aria-label="Open navigation menu"
           >
-            <span className="font-semibold text-gray-200">Lanson Johnson</span>
+            <span className="font-semibold text-gray-200 text-sm sm:text-base">Lanson Johnson</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`w-4 h-4 transition-transform ${profileOpen ? 'rotate-180' : ''}`}>
               <path fillRule="evenodd" d="M12 14.25a.75.75 0 0 1-.53-.22l-4.5-4.5a.75.75 0 1 1 1.06-1.06L12 12.44l3.97-3.97a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-.53.22z" clipRule="evenodd" />
             </svg>
           </button>
           {profileOpen && (
-            <div className="absolute right-4 top-[70px] w-56 rounded-xl border border-white/15 bg-[rgba(3,0,20,0.95)] backdrop-blur-xl shadow-xl p-2">
+            <div className="absolute right-2 sm:right-4 top-[65px] sm:top-[70px] w-52 sm:w-56 rounded-xl border border-white/15 bg-[rgba(3,0,20,0.95)] backdrop-blur-xl shadow-xl p-2">
               {navLinks.map(link => (
                 <a
                   key={link.href}
@@ -236,7 +236,7 @@ const Navbar: React.FC = () => {
         <div
           ref={mobileMenuRef}
           className={`
-            fixed top-[65px] right-0 w-80 max-w-[90vw] h-[calc(100vh-65px)] z-40 md:hidden
+            fixed top-[60px] sm:top-[65px] right-0 w-72 sm:w-80 max-w-[90vw] h-[calc(100vh-60px)] sm:h-[calc(100vh-65px)] z-40 md:hidden
             bg-[rgba(3,0,20,0.95)] backdrop-blur-lg border-l border-gray-800
             transform transition-transform duration-300 ease-in-out
             ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
@@ -244,7 +244,7 @@ const Navbar: React.FC = () => {
         >
           <div className="flex flex-col h-full">
             {/* Navigation Links */}
-            <div className="flex-1 px-6 py-8 space-y-6">
+            <div className="flex-1 px-4 sm:px-6 py-6 sm:py-8 space-y-4 sm:space-y-6">
               {navLinks.map((link, index) => {
                 const isActive = activeSection === link.href.substring(1);
                 return (
@@ -256,7 +256,7 @@ const Navbar: React.FC = () => {
                       handleLinkClick(link.href);
                     }}
                     className={`
-                      block px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200
+                      block px-4 py-3 text-base sm:text-lg font-medium rounded-lg transition-all duration-200
                       transform hover:translate-x-2
                       ${isActive 
                         ? 'text-white bg-gradient-to-r from-purple-600/20 to-cyan-600/20 border border-purple-400/30' 
@@ -274,7 +274,7 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Mobile Social Links */}
-            <div className="px-6 py-6 border-t border-gray-700">
+            <div className="px-4 sm:px-6 py-4 sm:py-6 border-t border-gray-700">
               <p className="text-gray-400 text-sm mb-4 font-medium">Connect with me</p>
               <div className="flex space-x-4">
                 {/* GitHub Icon for Mobile */}

@@ -40,7 +40,7 @@ const projects = [
 
 const Project = () => {
   return (
-    <section id='project' className='relative flex flex-col items-center justify-center py-16 px-6 md:px-20 overflow-hidden'>
+    <section id='project' className='relative flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-6 md:px-20 overflow-hidden'>
       {/* Background image with subtle motion */}
       <div className='absolute inset-0 w-full h-full z-0 pointer-events-none'>
         <motion.div
@@ -69,17 +69,17 @@ const Project = () => {
           animate="visible"
           className='text-center mb-16'
         >
-          <h1 className='text-[40px] md:text-[50px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-4'>
+          <h1 className='text-3xl sm:text-4xl md:text-[40px] lg:text-[50px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-4'>
             My Projects
           </h1>
-          <p className='text-lg text-gray-300 max-w-2xl mx-auto'>
+          <p className='text-base sm:text-lg text-gray-300 max-w-2xl mx-auto px-4 sm:px-0'>
             Here are some of my recent projects that showcase my skills in modern web development
           </p>
         </motion.div>
 
         {/* Projects Grid */}
         <div className='w-full'>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'>
             {projects.map((project, index) => (
               <motion.div
                 key={index}

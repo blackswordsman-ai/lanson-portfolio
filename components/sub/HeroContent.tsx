@@ -15,7 +15,7 @@ const   HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-6 md:px-20 mt-28 md:mt-40 w-full z-[20]"
+      className="flex flex-row items-center justify-center px-4 sm:px-6 md:px-20 mt-20 sm:mt-28 md:mt-40 w-full z-[20]"
     >
       <div className="h-full w-full flex flex-col gap-6 justify-center m-auto text-start max-w-[1100px] relative">
         <motion.div
@@ -30,7 +30,7 @@ const   HeroContent = () => {
 
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-6 text-5xl md:text-6xl font-extrabold leading-tight text-white max-w-[800px] w-auto h-auto"
+          className="flex flex-col gap-4 sm:gap-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white max-w-[800px] w-auto h-auto"
         >
             <span>
               Providing
@@ -43,7 +43,7 @@ const   HeroContent = () => {
         </motion.div>
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-base md:text-lg text-gray-300/90 my-4 max-w-[720px]"
+          className="text-sm sm:text-base md:text-lg text-gray-300/90 my-3 sm:my-4 max-w-[720px]"
         >
           I&apos;m a fullstack developer with a passion for creating dynamic and
           responsive web applications. With expertise in both frontend and
@@ -53,18 +53,18 @@ const   HeroContent = () => {
 
         <motion.div
           variants={slideInFromLeft(1)}
-          className="flex items-center gap-3"
+          className="flex flex-col sm:flex-row items-center gap-3 sm:gap-3"
         >
           <a
             href="#project"
-            className="py-2 button-primary text-white cursor-pointer rounded-lg px-5"
+            className="py-2 button-primary text-white cursor-pointer rounded-lg px-4 sm:px-5 w-full sm:w-auto text-sm sm:text-base"
             aria-label="Learn more about my projects"
           >
             Learn More
           </a>
           <a
             href="#footer"
-            className="py-2 px-5 rounded-lg border border-purple-500/60 text-purple-300 hover:bg-purple-500/10 transition-colors"
+            className="py-2 px-4 sm:px-5 rounded-lg border border-purple-500/60 text-purple-300 hover:bg-purple-500/10 transition-colors w-full sm:w-auto text-sm sm:text-base"
             aria-label="Get in touch"
           >
             Get in touch
@@ -73,14 +73,14 @@ const   HeroContent = () => {
 
         <motion.div
           variants={slideInFromRight(0.8)}
-          className="pointer-events-none select-none absolute -z-10 left-12 md:left-80 top-12 md:top-0"
+          className="pointer-events-none select-none absolute -z-10 left-4 sm:left-12 md:left-80 top-8 sm:top-12 md:top-0"
         >
           <Image
             src="/mainIconsdark.svg"
             alt="work icons"
             height={520}
             width={520}
-            className="opacity-90 scale-[0.88] md:scale-[0.95]"
+            className="opacity-90 scale-[0.7] sm:scale-[0.8] md:scale-[0.88] lg:scale-[0.95]"
             priority
           />
         </motion.div>

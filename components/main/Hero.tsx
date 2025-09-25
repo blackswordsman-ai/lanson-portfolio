@@ -16,8 +16,8 @@ const Hero = () => {
         >
           <source src='/earth.webm' type='video/webm' />
         </video>
-        {/* Dark overlay for better text readability */}
-        <div className='absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/30 to-black/60' />
+        {/* Darker overlay for better text readability */}
+        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-purple-900/40 to-black/70' />
       </div>
 
       {/* Content */}
