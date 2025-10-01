@@ -8,9 +8,11 @@ interface Props{
     title:string;
     description:string;
     technologies?: string[];
+    demoUrl?: string;
+    codeUrl?: string;
 }
 
-const ProjectCard = ({src, title, description, technologies}:Props) => {
+const ProjectCard = ({src, title, description, technologies, demoUrl, codeUrl}:Props) => {
   return (
     <motion.div 
       className='relative overflow-hidden rounded-xl shadow-lg shadow-black/50 border border-white/5 bg-black/40 backdrop-blur-sm hover:bg-black/30 transition-all duration-300 group'
@@ -53,12 +55,24 @@ const ProjectCard = ({src, title, description, technologies}:Props) => {
 
         {/* Action Buttons */}
         <div className='flex flex-col sm:flex-row gap-3 mt-6'>
-          <button className='flex-1 bg-gradient-to-r from-purple-600/80 to-cyan-600/80 hover:from-purple-700/90 hover:to-cyan-700/90 text-white text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md shadow-black/30'>
+          <a
+            className='flex-1 bg-gradient-to-r from-purple-600/80 to-cyan-600/80 hover:from-purple-700/90 hover:to-cyan-700/90 text-white text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md shadow-black/30 text-center'
+            href={demoUrl ?? '#'}
+            target={demoUrl ? '_blank' : undefined}
+            rel={demoUrl ? 'noopener noreferrer' : undefined}
+            aria-disabled={!demoUrl}
+          >
             Live Demo
-          </button>
-          <button className='flex-1 border border-purple-500/40 text-purple-400/90 hover:bg-purple-500/20 hover:text-purple-300 hover:border-purple-500/60 text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg transition-all duration-300'>
+          </a>
+          <a
+            className='flex-1 border border-purple-500/40 text-purple-400/90 hover:bg-purple-500/20 hover:text-purple-300 hover:border-purple-500/60 text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-center'
+            href={codeUrl ?? '#'}
+            target={codeUrl ? '_blank' : undefined}
+            rel={codeUrl ? 'noopener noreferrer' : undefined}
+            aria-disabled={!codeUrl}
+          >
             Code
-          </button>
+          </a>
         </div>
       </div>
     </motion.div>

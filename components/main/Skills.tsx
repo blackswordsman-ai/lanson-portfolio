@@ -5,12 +5,29 @@ import SkillText from '../sub/SkillText'
 
 const Skills = () => {
   return (
-    <section
-     id='skills'
-     className='flex flex-col items-center justify-center w-full relative pt-6 pb-8 sm:pb-12 gap-4 overflow-hidden bg-black/30'
-     style={{transform:"scale(0.98)"}}
-     >
-      <div className='relative z-10 w-full max-w-6xl mx-auto text-center'>
+    <div className='relative flex flex-col w-full overflow-hidden'>
+      {/* Background Video */}
+      <div className='absolute inset-0 z-0' aria-hidden>
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload='auto'
+          className='w-full h-full object-cover opacity-80'
+        >
+          <source src='/cards-video.webm' type='video/webm' />
+        </video>
+        {/* Lighter overlay for better video visibility while maintaining text readability */}
+        <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/40' />
+      </div>
+
+      {/* Content */}
+      <section
+       id='skills'
+       className='relative z-10 flex flex-col items-center justify-center w-full pt-6 pb-8 sm:pb-12 gap-4'
+       >
+        <div className='w-full max-w-6xl mx-auto text-center'>
         <SkillText />
    
         <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-1'>FRONTEND</h3>
@@ -21,6 +38,10 @@ const Skills = () => {
             icon={skill.icon}
             size={skill.size}
             index={index}
+            animation={skill.animation}
+            delay={skill.delay}
+            duration={skill.duration}
+            hoverEffect={skill.hoverEffect}
             />
           ))}
         </div>
@@ -32,6 +53,10 @@ const Skills = () => {
             icon={skill.icon}
             size={skill.size}
             index={index}
+            animation={skill.animation}
+            delay={skill.delay}
+            duration={skill.duration}
+            hoverEffect={skill.hoverEffect}
             />
           ))}
         </div>
@@ -45,6 +70,10 @@ const Skills = () => {
             icon={skill.icon}
             size={skill.size}
             index={index}
+            animation={skill.animation}
+            delay={skill.delay}
+            duration={skill.duration}
+            hoverEffect={skill.hoverEffect}
             />
           ))}
         </div>
@@ -56,11 +85,14 @@ const Skills = () => {
             icon={skill.icon}
             size={skill.size}
             index={index}
+            animation={skill.animation}
+            delay={skill.delay}
+            duration={skill.duration}
+            hoverEffect={skill.hoverEffect}
             />
           ))}
         </div>
-      </div>
-      <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-4'>FULL STACK</h3>
+        <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-4'>FULL STACK</h3>
         <div className='flex flex-row justify-center flex-wrap mt-2 gap-3 sm:gap-4 md:gap-6 items-center'>
           {Full_stack.map((skill: Skill, index: number) =>(
             <SkillDataProvider 
@@ -68,33 +100,16 @@ const Skills = () => {
             icon={skill.icon}
             size={skill.size}
             index={index}
+            animation={skill.animation}
+            delay={skill.delay}
+            duration={skill.duration}
+            hoverEffect={skill.hoverEffect}
             />
           ))}
         </div>
-        
-        <div className='absolute inset-0 w-full h-full'>
-          <div className='absolute inset-0 z-[-10] opacity-20 overflow-hidden'>
-            <video
-            className='absolute inset-0 w-full h-full object-cover'
-            preload='false'
-            playsInline
-            loop
-            muted
-            autoPlay
-            src='cards-video.webm'
-            />
-            {/* Dark overlay for better contrast */}
-            <div className='absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40' />
-
-           
-
-          </div>
-
         </div>
-        
-
-
-    </section>
+      </section>
+    </div>
   )
 }
 

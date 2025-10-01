@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { Socials } from '@/constants';
 
@@ -128,10 +129,39 @@ const Navbar: React.FC = () => {
   return (
     <nav className={navbarClasses}>
       <div className="max-w-[1280px] mx-auto h-full flex justify-between items-center relative">
-        {/* Left side placeholder removed per request */}
-        <div />
+        {/* Left: Logo / Home */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 rounded-full px-2 py-1 hover:bg-white/5 transition-colors"
+          aria-label="Go to home"
+        >
+          <Image src="/logo-sm.png" alt="Logo" width={28} height={28} className="rounded-full" />
+          <span className="hidden sm:block text-sm font-semibold text-gray-200">LJ</span>
+        </Link>
 
         {/* Centered Desktop Navigation (Segmented Control) */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-sm">
+          {navLinks.map(link => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href);
+                }}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? 'bg-white/20 text-white border border-white/20 shadow'
+                    : 'text-gray-200 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {link.name}
+              </a>
+            );
+          })}
+        </div>
         {/* Desktop Profile Dropdown with name */}
         <div className="hidden md:flex items-center gap-3 ml-auto" ref={profileMenuRef}>
           <button
@@ -166,11 +196,11 @@ const Navbar: React.FC = () => {
           )}
         </div>
 
-        {/* Right-side Social Links (Desktop) */}
+        {/* Right-side Profile + Social Links (Desktop) */}
         <div className="hidden md:flex items-center space-x-3">
           {/* GitHub Icon */}
           <a
-            href="https://github.com/your-username"
+            href="https://github.com/blackswordsman-ai"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full transition-all duration-200 hover:bg-white/10 hover:scale-110"

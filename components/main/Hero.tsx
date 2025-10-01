@@ -3,9 +3,9 @@ import HeroContent from '../sub/HeroContent'
 
 const Hero = () => {
   return (
-    <div className='relative flex flex-col h-screen w-full overflow-hidden'>
+    <div className='relative flex flex-col w-full overflow-hidden '>
       {/* Background Video */}
-      <div className='absolute inset-0 z-0'>
+      <div className='absolute inset-0 z-0' aria-hidden>
         <video
           autoPlay
           muted
