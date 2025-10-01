@@ -24,11 +24,12 @@ const Encryption = () => {
         
         {/* Content overlay inside video */}
         <div className='absolute inset-0 z-10 flex flex-col items-center justify-center pt-20 sm:pt-32 md:pt-40'>
-        {/* Lock icon positioned correctly */}
+        {/* Lock icon with subtle entrance */}
         <motion.div
           variants={slideInFromTop}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.4 }}
           className='mb-8 group cursor-pointer relative'
         >
           {/* Lock top positioned like in image */}
@@ -60,28 +61,54 @@ const Encryption = () => {
             <motion.div
               variants={slideInFromTop}
               initial="hidden"
-              animate="visible"
-              className='text-2xl sm:text-3xl md:text-[40px] lg:text-[50px] font-medium text-center text-white mb-4 px-4'
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+              className='text-center mb-3 px-4'
             >
-          <span>
-            Performance
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 ml-2 mr-2">
-              &
-            </span>
-            Security
-          </span>
-        </motion.div>
+              <h2 className='text-3xl sm:text-4xl md:text-[44px] lg:text-[52px] font-extrabold tracking-tight leading-tight'>
+                <motion.span
+                  className='text-transparent bg-clip-text'
+                  initial={{ backgroundPosition: '0% 50%', opacity: 0.9 }}
+                  whileInView={{ backgroundPosition: '100% 50%', opacity: 1 }}
+                  viewport={{ once: false, amount: 0.45 }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  style={{
+                    backgroundImage: 'linear-gradient(90deg, rgba(168,85,247,1) 0%, rgba(190,186,255,1) 50%, rgba(34,211,238,1) 100%)',
+                    backgroundSize: '200% 100%'
+                  }}
+                >
+                  Performance & Security
+                </motion.span>
+              </h2>
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false, amount: 0.45 }}
+              transition={{ duration: 0.5 }}
+              className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mb-3'
+            />
 
             {/* Subtitle */}
             <motion.div
               variants={slideInFromTop}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.5 }}
               transition={{ delay: 0.2 }}
-              className='text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 text-center mb-6 max-w-2xl px-4'
+              className='text-sm sm:text-base md:text-lg lg:text-xl text-center mb-6 max-w-2xl px-4'
             >
-          Building robust applications with cutting-edge technologies
-        </motion.div>
+              <motion.span
+                initial={{ color: 'rgba(203,213,225,0.65)' }}
+                whileInView={{ color: 'rgba(243,244,246,0.95)' }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                Building robust applications with cutting-edge technologies
+              </motion.span>
+            </motion.div>
 
          {/* Call to Action */}
          <motion.div

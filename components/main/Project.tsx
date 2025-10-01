@@ -85,15 +85,41 @@ const Project = () => {
         <motion.div
           variants={slideInFromTop}
           initial="hidden"
-          animate="visible"
-          className='text-center mb-16'
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.4 }}
+          className='text-center mb-12 sm:mb-16'
         >
-          <h1 className='text-3xl sm:text-4xl md:text-[40px] lg:text-[50px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 mb-4'>
-            My Projects
-          </h1>
-          <p className='text-base sm:text-lg text-gray-300 max-w-2xl mx-auto px-4 sm:px-0'>
+          <h2 className='text-3xl sm:text-4xl md:text-[44px] lg:text-[52px] font-extrabold tracking-tight mb-3'>
+            <motion.span
+              className='text-transparent bg-clip-text'
+              initial={{ backgroundPosition: '0% 50%', opacity: 0.9 }}
+              whileInView={{ backgroundPosition: '100% 50%', opacity: 1 }}
+              viewport={{ once: false, amount: 0.45 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                backgroundImage: 'linear-gradient(90deg, rgba(168,85,247,1) 0%, rgba(190,186,255,1) 50%, rgba(34,211,238,1) 100%)',
+                backgroundSize: '200% 100%'
+              }}
+            >
+              My Projects
+            </motion.span>
+          </h2>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.5 }}
+            className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mx-auto mb-3'
+          />
+          <motion.p
+            initial={{ color: 'rgba(203,213,225,0.65)' }}
+            whileInView={{ color: 'rgba(243,244,246,0.95)' }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+            className='text-base sm:text-lg text-center max-w-2xl mx-auto px-4 sm:px-0'
+          >
             Here are some of my recent projects that showcase my skills in modern web development
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Projects Grid */}
@@ -102,10 +128,10 @@ const Project = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={index}
-                variants={slideInFromTop}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: index * 0.2 }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
               >
                 <ProjectCard
                   src={project.src}

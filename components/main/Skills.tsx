@@ -1,9 +1,39 @@
 import {Frontend_skill, Backend_skill,  Other_skill, Full_stack, Deployment_skill, Skill} from '@/constants'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import SkillDataProvider from '../sub/SkillDataProvider'
 import SkillText from '../sub/SkillText'
 
 const Skills = () => {
+  const sentinelRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current
+    if (!sentinel) return
+
+    let hasScrolled = false
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasScrolled) {
+            hasScrolled = true
+            // Scroll to the next section smoothly
+            const next = document.querySelector('#encryption') || document.querySelector('#project')
+            if (next) {
+              (next as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+            // allow re-trigger after slight delay if user scrolls back up quickly
+            setTimeout(() => {
+              hasScrolled = false
+            }, 1200)
+          }
+        })
+      },
+      { threshold: 0.75 }
+    )
+
+    observer.observe(sentinel)
+    return () => observer.disconnect()
+  }, [])
   return (
     <div className='relative flex flex-col w-full overflow-hidden'>
       {/* Background Video */}
@@ -107,6 +137,8 @@ const Skills = () => {
             />
           ))}
         </div>
+        {/* Sentinel to auto-scroll to next section once icon grid bottom enters view */}
+        <div ref={sentinelRef} className='h-1 w-full' />
         </div>
       </section>
     </div>
