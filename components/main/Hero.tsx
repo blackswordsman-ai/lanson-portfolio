@@ -7,12 +7,11 @@ const Hero = () => {
       {/* Background Video */}
       <div className="absolute inset-0 z-0" aria-hidden>
         <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/path/to/poster.jpg"
+           autoPlay
+           muted
+           loop
+           playsInline
+           preload='auto'
           className="w-full h-full object-cover opacity-70"
         >
           <source src="/earth.webm" type="video/webm" />
