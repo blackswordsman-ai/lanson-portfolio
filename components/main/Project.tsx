@@ -10,52 +10,41 @@ type ProjectItem = {
   title: string;
   description: string;
   technologies: string[];
-  demoUrl?: string;
-  codeUrl?: string;
 }
 
 const projects: ProjectItem[] = [
   {
-    src: '/emr.png', //add image
+    src: '/emr.png',
     title: 'EMR (Dubai)',
     description: 'Electronic Medical Records system tailored for Dubai clinics: patient profiles, appointments, e-prescriptions, and role-based access.',
     technologies: ['Next.js', 'TypeScript', 'Node.js', 'MYSQL','Tanstack '],
-    demoUrl: '#',
-    codeUrl: '#'
   },
   {
-    src: '/Findnx.png', //add image
+    src: '/Findnx.png',
     title: 'FindNX Car Sales (Kerala)',
     description: 'OLX-style marketplace focused on Kerala car sales: listing management, chat, filters, and secure user verification.',
     technologies: ['Next.js', 'MongoDB', 'Socket.io', 'Tailwind CSS'],
-    demoUrl: '#',
-    codeUrl: '#'
   },
   {
-    src: '/lms.png', //add image
+    src: '/lms.png',
     title: 'Learning Management System',
     description: 'LMS platform with courses, lessons, quizzes, progress tracking, and instructor dashboards.',
     technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Stripe'],
-    demoUrl: '#',
-    codeUrl: '#'
   },
   {
-    src: '/MoneyManagemnt.png', //add image
+    src: '/MoneyManagemnt.png',
     title: 'Personal Finance Manager',
     description: 'Comprehensive money management app with expense tracking, budget planning, investment monitoring, and financial analytics dashboard.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Chart.js', 'Express'],
-    demoUrl: '#',
-    codeUrl: '#'
   },
   {
-    src: '/sealpost.png', //add image
+    src: '/sealpost.png',
     title: 'Email Communication Platform',
     description: 'Advanced email management system with templates, automation, analytics, and team collaboration features for business communications.',
     technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Nodemailer', 'Socket.io'],
-    demoUrl: '#',
-    codeUrl: '#'
   }
 ]
+
 
 const Project = () => {
   return (
@@ -138,8 +127,6 @@ const Project = () => {
                   title={project.title}
                   description={project.description}
                   technologies={project.technologies}
-                  demoUrl={project.demoUrl}
-                  codeUrl={project.codeUrl}
                 />
               </motion.div>
             ))}
