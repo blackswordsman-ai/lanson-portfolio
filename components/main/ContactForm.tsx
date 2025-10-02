@@ -25,28 +25,57 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    // Validate form data
     if (!formData.name || !formData.email || !formData.message) {
       setSubmitStatus("error");
       return;
     }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSubmitStatus("error");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setSubmitStatus("success");
-      setIsSubmitting(false);
-      setFormData({ name: "", email: "", message: "" });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        console.error('Form submission error:', result.error);
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 3000);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 3000);
-    }, 1000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden bg-black">
+    <div id="contact" className="relative w-full min-h-[50vh] sm:min-h-[60vh] overflow-hidden bg-black -mt-8 sm:-mt-12">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-black/40 pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-screen px-4 py-12">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-[50vh] sm:min-h-[60vh] px-4 py-6 sm:py-8">
         <div className="w-full max-w-xl bg-gray-950/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl shadow-purple-900/40 border border-gray-800/40">
           {/* Header */}
           <motion.div
@@ -54,7 +83,7 @@ const ContactForm = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.4 }}
-            className="text-center mb-8"
+            className="text-center mb-6"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
               Get in <span className="text-purple-500">Touch</span>
@@ -148,12 +177,22 @@ const ContactForm = () => {
               {/* Status Messages */}
               {submitStatus === "success" && (
                 <div className="mt-4 p-3 sm:p-4 bg-green-500/10 border border-green-500/50 rounded-xl text-green-400 text-center text-sm sm:text-base">
-                  Message sent successfully! We will get back to you soon.
+                  <div className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    Message sent successfully! I&apos;ll get back to you soon.
+                  </div>
                 </div>
               )}
               {submitStatus === "error" && (
                 <div className="mt-4 p-3 sm:p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-center text-sm sm:text-base">
-                  Please fill in all fields.
+                  <div className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                    Failed to send message. Please check your details and try again.
+                  </div>
                 </div>
               )}
             </div>

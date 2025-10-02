@@ -3,10 +3,11 @@ import { Geist, Geist_Mono, Inconsolata } from "next/font/google";
 import "./globals.css";
 import StarCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
-import Footer from "@/components/main/Footer";
+// import Profile from "@/components/main/Profile";
 import LenisProvider from "@/components/sub/LenisProvider";
 import IntrestedSection from "@/components/sub/IntrestedSection";
 import  ContactForm  from "@/components/main/ContactForm";
+import Footer from "@/components/main/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +85,7 @@ export default function RootLayout({
         {children}
         <IntrestedSection />
         <ContactForm />
+        {/* <Profile /> */}
         <Footer />
       </body>
     </html>

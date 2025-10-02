@@ -13,7 +13,7 @@ interface Props {
 const ModernProjectCard = ({ src, title, description, technologies, onClick }: Props) => {
   return (
     <motion.div
-      className="cursor-pointer max-w-sm mx-auto flex flex-col rounded-2xl bg-black/40 backdrop-blur-lg border border-white/10 overflow-hidden shadow-lg shadow-black/30 group transition-all duration-300"
+      className="cursor-pointer w-full max-w-sm mx-auto flex flex-col rounded-2xl bg-black/40 backdrop-blur-lg border border-white/10 overflow-hidden shadow-lg shadow-black/30 group transition-all duration-300 h-[520px] sm:h-[540px] lg:h-[560px]"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -20, scale: 1.03, boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}
@@ -33,25 +33,29 @@ const ModernProjectCard = ({ src, title, description, technologies, onClick }: P
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 flex flex-col flex-1 justify-between min-h-[220px]">
-        <div>
-          <h3 className="text-lg sm:text-xl font-bold text-gray-100 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all duration-300 text-center break-words">
-            {title}
-          </h3>
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300 text-center break-words">
-            {description}
-          </p>
+      <div className="p-4 sm:p-6 flex flex-col flex-1">
+        <div className="flex-1 flex flex-col justify-between">
+          <div>
+            <h3 className="text-lg sm:text-xl font-bold text-gray-100 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 transition-all duration-300 text-center break-words">
+              {title}
+            </h3>
+            <div className="min-h-[80px] sm:min-h-[90px] flex items-start">
+              <p className="text-gray-400 text-sm sm:text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300 text-center break-words">
+                {description}
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Technologies */}
+        {/* Technologies - Fixed at bottom */}
         {technologies && (
-          <div className="flex flex-wrap gap-2 justify-center mt-3">
+          <div className="flex flex-wrap gap-2 justify-center mt-4 pt-3 border-t border-white/5">
             {technologies.map((tech, i) => (
               <span
                 key={i}
                 className="px-2 py-1 text-xs font-medium bg-purple-500/10 text-purple-300/80 rounded-full border border-purple-500/20 transition-transform duration-300 group-hover:scale-110 break-words"
               >
-                {tech}
+                {tech.trim()}
               </span>
             ))}
           </div>

@@ -58,14 +58,14 @@ const ScrollingHero = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden bg-gradient-to-b from-black via-purple-900/20 to-black">
+    <div id="about" className="relative flex flex-col items-center justify-center w-full min-h-[40vh] sm:min-h-[50vh] overflow-hidden bg-gradient-to-b from-black via-purple-900/20 to-black">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-black/40 pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full space-y-6 px-4 py-16">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full space-y-2 sm:space-y-4 px-4 py-4 sm:py-6">
         <div className="w-full overflow-hidden px-2 sm:px-4">
           <h2
             ref={topTextRef}
-            className="text-base sm:text-2xl md:text-4xl lg:text-6xl font-bold text-gray-400 whitespace-nowrap"
+            className="text-sm sm:text-xl md:text-3xl lg:text-5xl font-bold text-gray-400 whitespace-nowrap"
             style={{ willChange: "transform" }}
           >
             Problem Solving Software Architecture
@@ -75,7 +75,7 @@ const ScrollingHero = () => {
         <div className="text-center px-2">
           <h1
             ref={colorTextRef}
-            className="text-lg sm:text-3xl md:text-5xl lg:text-7xl font-bold whitespace-nowrap"
+            className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-bold whitespace-nowrap"
             style={{ willChange: "background" }}
           >
             Interested in Collaboration?
@@ -85,7 +85,7 @@ const ScrollingHero = () => {
         <div className="w-full overflow-hidden px-2 sm:px-4">
           <h2
             ref={bottomTextRef}
-            className="text-base sm:text-2xl md:text-4xl lg:text-6xl font-bold text-gray-400 whitespace-nowrap sm:block"
+            className="text-sm sm:text-xl md:text-3xl lg:text-5xl font-bold text-gray-400 whitespace-nowrap sm:block"
             style={{ willChange: "transform" }}
           >
             Development React Native Development

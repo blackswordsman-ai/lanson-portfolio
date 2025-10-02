@@ -17,7 +17,7 @@ const projects: ProjectItem[] = [
     src: '/emr.png',
     title: 'EMR (Dubai)',
     description: 'Electronic Medical Records system tailored for Dubai clinics: patient profiles, appointments, e-prescriptions, and role-based access.',
-    technologies: ['Next.js', 'TypeScript', 'Node.js', 'MYSQL','Tanstack '],
+    technologies: ['Next.js', 'TypeScript', 'Node.js', 'MYSQL', 'Tanstack'],
   },
   {
     src: '/Findnx.png',
@@ -48,7 +48,7 @@ const projects: ProjectItem[] = [
 
 const Project = () => {
   return (
-    <section id='project' className='relative flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-6 md:px-20 overflow-hidden'>
+    <section id='project' className='relative flex flex-col items-center justify-center pt-2 pb-6 sm:pt-3 sm:pb-8 md:pt-4 md:pb-12 lg:pt-6 lg:pb-16 px-4 sm:px-6 md:px-20 overflow-hidden min-h-[400px] sm:min-h-[500px] -mt-4 sm:-mt-6'>
       {/* Background image with subtle motion */}
       <div className='absolute inset-0 w-full h-full z-0 pointer-events-none'>
         <motion.div
@@ -67,18 +67,18 @@ const Project = () => {
           />
         </motion.div>
         {/* Vignette/gradient overlay for readability */}
-        <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60' />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/70' />
       </div>
-      <div className='relative z-10 w-full max-w-7xl mx-auto'>
+      <div className='relative z-20 w-full max-w-7xl mx-auto'>
         {/* Header */}
         <motion.div
           variants={slideInFromTop}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.4 }}
-          className='text-center mb-12 sm:mb-16'
+          viewport={{ once: false, amount: 0.3 }}
+          className='text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4 sm:px-6'
         >
-          <h2 className='text-3xl sm:text-4xl md:text-[44px] lg:text-[52px] font-extrabold tracking-tight mb-3'>
+          <h2 className='text-3xl sm:text-4xl md:text-[44px] lg:text-[52px] font-extrabold tracking-tight mb-1 sm:mb-2'>
             <motion.span
               className='text-transparent bg-clip-text'
               initial={{ backgroundPosition: '0% 50%', opacity: 0.9 }}
@@ -98,22 +98,22 @@ const Project = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.5 }}
-            className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mx-auto mb-3'
+            className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mx-auto mb-1 sm:mb-2'
           />
           <motion.p
             initial={{ color: 'rgba(203,213,225,0.65)' }}
             whileInView={{ color: 'rgba(243,244,246,0.95)' }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.6 }}
-            className='text-base sm:text-lg text-center max-w-2xl mx-auto px-4 sm:px-0'
+            className='text-sm sm:text-base md:text-lg text-center max-w-2xl mx-auto px-4 sm:px-0'
           >
             Here are some of my recent projects that showcase my skills in modern web development
           </motion.p>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className='w-full'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8'>
+        <div className='w-full relative z-30'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8'>
             {projects.map((project, index) => (
               <motion.div
                 key={index}

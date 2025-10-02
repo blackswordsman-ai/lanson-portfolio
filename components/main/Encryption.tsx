@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Encryption = () => {
   return (
-        <div className='relative w-full min-h-[400px] sm:min-h-[500px]'>
+        <div className='relative w-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px]'>
       {/* Background video with content overlay */}
       <div className='relative w-full h-full overflow-hidden'>
         <video
@@ -23,14 +23,14 @@ const Encryption = () => {
         <div className='absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-black/40 pointer-events-none' />
         
         {/* Content overlay inside video */}
-        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center pt-20 sm:pt-32 md:pt-40'>
+        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center pt-8 sm:pt-12 md:pt-16 lg:pt-20'>
         {/* Lock icon with subtle entrance */}
         <motion.div
           variants={slideInFromTop}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.4 }}
-          className='mb-8 group cursor-pointer relative'
+          className='mb-3 sm:mb-4 lg:mb-6 group cursor-pointer relative'
         >
           {/* Lock top positioned like in image */}
           <div className='relative z-20'>
@@ -63,7 +63,7 @@ const Encryption = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.4 }}
-              className='text-center mb-3 px-4'
+              className='text-center mb-1 sm:mb-2 px-4'
             >
               <h2 className='text-3xl sm:text-4xl md:text-[44px] lg:text-[52px] font-extrabold tracking-tight leading-tight'>
                 <motion.span
@@ -88,7 +88,7 @@ const Encryption = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false, amount: 0.45 }}
               transition={{ duration: 0.5 }}
-              className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mb-3'
+              className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mb-1 sm:mb-2'
             />
 
             {/* Subtitle */}
@@ -98,7 +98,7 @@ const Encryption = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
               transition={{ delay: 0.2 }}
-              className='text-sm sm:text-base md:text-lg lg:text-xl text-center mb-6 max-w-2xl px-4'
+              className='text-sm sm:text-base md:text-lg lg:text-xl text-center mb-3 sm:mb-4 max-w-2xl px-4'
             >
               <motion.span
                 initial={{ color: 'rgba(203,213,225,0.65)' }}
