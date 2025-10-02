@@ -73,61 +73,63 @@ const ContactForm = () => {
           >
             <div className="space-y-5 sm:space-y-6">
               {/* Name */}
-              <div className="relative group">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-gray-800 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 shadow-lg shadow-black/50 text-sm sm:text-base"
-                  placeholder="Your Name"
-                />
-                <label
-                  htmlFor="name"
-                  className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
-                >
-                  Name
-                </label>
-              </div>
+         {/* Name */}
+<div className="relative group">
+  <input
+    type="text"
+    id="name"
+    name="name"
+    value={formData.name}
+    onChange={handleChange}
+    className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-white/80 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 shadow-lg shadow-black/50 text-sm sm:text-base"
+    placeholder="Your Name"
+  />
+  <label
+    htmlFor="name"
+    className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
+  >
+    Name
+  </label>
+</div>
 
-              {/* Email */}
-              <div className="relative group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-gray-800 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 shadow-lg shadow-black/50 text-sm sm:text-base"
-                  placeholder="Your Email"
-                />
-                <label
-                  htmlFor="email"
-                  className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
-                >
-                  Email
-                </label>
-              </div>
+{/* Email */}
+<div className="relative group">
+  <input
+    type="email"
+    id="email"
+    name="email"
+    value={formData.email}
+    onChange={handleChange}
+    className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-white/80 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 shadow-lg shadow-black/50 text-sm sm:text-base"
+    placeholder="Your Email"
+  />
+  <label
+    htmlFor="email"
+    className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
+  >
+    Email
+  </label>
+</div>
 
-              {/* Message */}
-              <div className="relative group">
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-gray-800 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 resize-none shadow-lg shadow-black/50 text-sm sm:text-base"
-                  placeholder="Your Message"
-                />
-                <label
-                  htmlFor="message"
-                  className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
-                >
-                  Message
-                </label>
-              </div>
+{/* Message */}
+<div className="relative group">
+  <textarea
+    id="message"
+    name="message"
+    value={formData.message}
+    onChange={handleChange}
+    rows={4}
+    className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-white/80 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 resize-none shadow-lg shadow-black/50 text-sm sm:text-base"
+    placeholder="Your Message"
+  />
+  <label
+    htmlFor="message"
+    className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
+  >
+    Message
+  </label>
+</div>
+
 
               {/* Button */}
               <button
