@@ -62,18 +62,19 @@ const Skills = () => {
    
         <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-1'>FRONTEND</h3>
         <div className='flex flex-row justify-center flex-wrap mt-2 gap-3 sm:gap-4 md:gap-6 items-center'>
-          {Frontend_skill.map((skill: Skill, index: number) =>(
-            <SkillDataProvider 
-            key={skill.icon}
-            icon={skill.icon}
-            size={skill.size}
-            index={index}
-            animation={skill.animation}
-            delay={skill.delay}
-            duration={skill.duration}
-            hoverEffect={skill.hoverEffect}
-            />
-          ))}
+        {Frontend_skill.map((skill, i) => (
+  <SkillDataProvider
+    key={skill.icon}
+    icon={skill.icon}
+    size={skill.size}
+    index={i} // make sure index is passed
+    animation={skill.animation}
+    delay={skill.delay}
+    duration={skill.duration}
+    hoverEffect={skill.hoverEffect}
+  />
+))}
+
         </div>
         <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-4'>BACKEND</h3>
         <div className='flex flex-row justify-center flex-wrap mt-2 gap-3 sm:gap-4 md:gap-6 items-center'>

@@ -1,12 +1,11 @@
-"use client"
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromTop } from '@/utils/motion';
-import { Icon } from '@iconify/react';
-import Image from 'next/image';
+import { slideInFromTop } from "@/utils/motion";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
 
 const Footer = () => {
-
   return (
     <footer id="footer" className="relative w-full bg-black/40">
       {/* Profile Section */}
@@ -21,11 +20,13 @@ const Footer = () => {
             {/* Circular Profile Picture */}
             <div className="relative">
               {/* Moving light on existing border */}
-              <div className="absolute inset-0 w-40 h-40 rounded-full animate-spin pointer-events-none" 
-                   style={{ animationDuration: '3s' }}>
+              <div
+                className="absolute inset-0 w-40 h-40 rounded-full animate-spin pointer-events-none"
+                style={{ animationDuration: "3s" }}
+              >
                 <div className="absolute top-0 left-1/2 w-2 h-2 bg-white rounded-full transform -translate-x-1/2 -translate-y-1 shadow-lg shadow-white/80"></div>
               </div>
-              
+
               <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-purple-500/30 shadow-xl shadow-purple-500/20 relative z-10">
                 <Image
                   src="/178938044.jpeg"
@@ -51,11 +52,13 @@ const Footer = () => {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-center space-x-3 flex-1 py-3 px-4 sm:px-6 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-lg shadow-lg hover:shadow-purple-500/15 hover:bg-black/30 transition-all duration-300 group cursor-pointer"
               >
-                <Icon 
-                  icon="mdi:linkedin" 
-                  className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" 
+                <Icon
+                  icon="mdi:linkedin"
+                  className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors duration-300"
                 />
-                <span className="text-white font-medium group-hover:text-purple-300 transition-colors duration-300">LinkedIn</span>
+                <span className="text-white font-medium group-hover:text-purple-300 transition-colors duration-300">
+                  LinkedIn
+                </span>
               </motion.a>
 
               {/* GitHub Button */}
@@ -67,11 +70,13 @@ const Footer = () => {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-center space-x-3 flex-1 py-3 px-4 sm:px-6 bg-black/40 backdrop-blur-sm border border-cyan-500/20 rounded-lg shadow-lg hover:shadow-cyan-500/15 hover:bg-black/30 transition-all duration-300 group cursor-pointer"
               >
-                <Icon 
-                  icon="mdi:github" 
-                  className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300" 
+                <Icon
+                  icon="mdi:github"
+                  className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300"
                 />
-                <span className="text-white font-medium group-hover:text-cyan-300 transition-colors duration-300">GitHub</span>
+                <span className="text-white font-medium group-hover:text-cyan-300 transition-colors duration-300">
+                  GitHub
+                </span>
               </motion.a>
             </div>
 
@@ -83,8 +88,12 @@ const Footer = () => {
               transition={{ delay: 0.2 }}
               className="text-center"
             >
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Lanson Johnson</h2>
-              <p className="text-gray-300 text-base sm:text-lg">Full Stack Developer</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                Lanson Johnson
+              </h2>
+              <p className="text-gray-300 text-base sm:text-lg">
+                Full Stack Developer
+              </p>
               <div className="mt-4 flex items-center justify-center space-x-2">
                 <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" />
                 <span className="text-sm text-gray-400">Available for work</span>
@@ -101,9 +110,9 @@ const Footer = () => {
               className="text-center space-y-2 px-4"
             >
               <div className="flex items-center justify-center space-x-3">
-                <Icon 
-                  icon="mdi:email" 
-                  className="w-5 h-5 text-purple-400" 
+                <Icon
+                  icon="mdi:email"
+                  className="w-5 h-5 text-purple-400"
                 />
                 <a
                   href="mailto:lansonthandappilly20@gmail.com"
@@ -113,12 +122,12 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex items-center justify-center space-x-3">
-                <Icon 
-                  icon="mdi:phone" 
-                  className="w-5 h-5 text-cyan-400" 
+                <Icon
+                  icon="mdi:phone"
+                  className="w-5 h-5 text-cyan-400"
                 />
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+919947365155"
                   className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm sm:text-base md:text-lg"
                 >
                   +919947365155

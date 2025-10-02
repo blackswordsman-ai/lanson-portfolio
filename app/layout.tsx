@@ -5,6 +5,8 @@ import StarCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 import LenisProvider from "@/components/sub/LenisProvider";
+import IntrestedSection from "@/components/sub/IntrestedSection";
+import  ContactForm  from "@/components/main/ContactForm";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,6 +82,8 @@ export default function RootLayout({
         <StarCanvas />
         <Navbar />
         {children}
+        <IntrestedSection />
+        <ContactForm />
         <Footer />
       </body>
     </html>

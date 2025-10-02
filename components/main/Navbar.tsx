@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { Howl } from 'howler';
@@ -196,8 +196,12 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-3 rounded-full px-3 py-2 hover:bg-white/5 transition-colors"
           aria-label="Go to home"
         >
-          <Image src="/logo-sm.png" alt="Logo" width={40} height={40} className="rounded-full" />
-          <span className="hidden sm:block text-lg font-semibold text-gray-200">LJ</span>
+          
+          {/* <span className="hidden md:block text-xl font-semibold text-gray-200">LJ</span> */}
+          <span className="hidden md:inline-block text-2xl font-bold text-gray-100 tracking-wide uppercase bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent drop-shadow-lg">
+  LJ
+</span>
+
         </Link>
 
         {/* Right-side controls: Music + Menu */}
@@ -207,10 +211,11 @@ const Navbar: React.FC = () => {
             onClick={toggleMusic}
             aria-label={isMusicPlaying ? 'Pause music' : 'Play music'}
           >
-            <Icon
-              icon={isMusicPlaying ? 'material-symbols:pause-circle' : 'material-symbols:music-note'}
-              className="w-7 h-7 sm:w-8 sm:h-8"
-            />
+           <Icon
+  icon={isMusicPlaying ? 'mdi:equalizer' : 'mdi:music-note-outline'}
+  className="w-7 h-7 sm:w-8 sm:h-8"
+/>
+
           </button>
 
           {/* Menu Toggle */}
