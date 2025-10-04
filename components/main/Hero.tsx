@@ -3,7 +3,7 @@ import HeroContent from "../sub/HeroContent";
 
 const Hero = () => {
   return (
-    <div className="relative flex flex-col w-full overflow-hidden ">
+      <div id="hero" className="relative flex flex-col w-full overflow-hidden ">
       {/* Background Video */}
       <div className="absolute inset-0 z-0" aria-hidden>
         <video

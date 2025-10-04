@@ -48,7 +48,7 @@ const projects: ProjectItem[] = [
 
 const Project = () => {
   return (
-    <section id='project' className='relative flex flex-col items-center justify-center pt-2 pb-6 sm:pt-3 sm:pb-8 md:pt-4 md:pb-12 lg:pt-6 lg:pb-16 px-4 sm:px-6 md:px-20 overflow-hidden min-h-[400px] sm:min-h-[500px] -mt-4 sm:-mt-6'>
+    <section id='project' className='relative flex flex-col items-center justify-center pt-8 pb-6 sm:pt-12 sm:pb-8 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16 px-4 sm:px-6 md:px-20 overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-[700px]'>
       {/* Background image with subtle motion */}
       <div className='absolute inset-0 w-full h-full z-0 pointer-events-none'>
         <motion.div
@@ -67,7 +67,7 @@ const Project = () => {
           />
         </motion.div>
         {/* Vignette/gradient overlay for readability */}
-        <div className='absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/70' />
+        <div className='absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/40' />
       </div>
       <div className='relative z-20 w-full max-w-7xl mx-auto'>
         {/* Header */}
@@ -76,18 +76,21 @@ const Project = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
-          className='text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 px-4 sm:px-6'
+          className='text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4 sm:px-6 relative z-30'
         >
-          <h2 className='text-3xl sm:text-4xl md:text-[44px] lg:text-[52px] font-extrabold tracking-tight mb-1 sm:mb-2'>
+          <h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight mb-2 sm:mb-3 md:mb-4 text-white drop-shadow-lg'>
             <motion.span
-              className='text-transparent bg-clip-text'
+              className='text-white bg-clip-text drop-shadow-md'
               initial={{ backgroundPosition: '0% 50%', opacity: 0.9 }}
               whileInView={{ backgroundPosition: '100% 50%', opacity: 1 }}
               viewport={{ once: false, amount: 0.45 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 backgroundImage: 'linear-gradient(90deg, rgba(168,85,247,1) 0%, rgba(190,186,255,1) 50%, rgba(34,211,238,1) 100%)',
-                backgroundSize: '200% 100%'
+                backgroundSize: '200% 100%',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
               }}
             >
               My Projects
@@ -98,14 +101,14 @@ const Project = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.5 }}
-            className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mx-auto mb-1 sm:mb-2'
+            className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] lg:w-[96px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mx-auto mb-2 sm:mb-3 md:mb-4'
           />
           <motion.p
-            initial={{ color: 'rgba(203,213,225,0.65)' }}
-            whileInView={{ color: 'rgba(243,244,246,0.95)' }}
+            initial={{ color: 'rgba(203,213,225,0.8)' }}
+            whileInView={{ color: 'rgba(243,244,246,1)' }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.6 }}
-            className='text-sm sm:text-base md:text-lg text-center max-w-2xl mx-auto px-4 sm:px-0'
+            className='text-sm sm:text-base md:text-lg text-center max-w-2xl mx-auto px-4 sm:px-0 leading-relaxed text-gray-200 drop-shadow-sm'
           >
             Here are some of my recent projects that showcase my skills in modern web development
           </motion.p>

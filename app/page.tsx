@@ -1,6 +1,7 @@
 "use client";
 import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
+import RocketSpinner from './loading';  
 
 // Lazy load components
 const Hero = dynamic(() => import('@/components/main/Hero'), {
@@ -34,6 +35,7 @@ export default function Home() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
+          
           <Hero />
         </motion.section>
 
