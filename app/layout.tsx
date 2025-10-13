@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inconsolata } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import StarCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
@@ -9,19 +9,11 @@ import IntrestedSection from "@/components/sub/IntrestedSection";
 import  ContactForm  from "@/components/main/ContactForm";
 import Footer from "@/components/main/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const inconsolata = Inconsolata({
-  variable: "--font-inconsolata",
-  subsets: ["latin"],
+  variable: "--font-roboto",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -77,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inconsolata.className} ${geistSans.variable} ${geistMono.variable} antialiased bg-[#030014] overflow-y-scroll overflow-x-hidden `}
+        className={`${roboto.className} ${roboto.variable} antialiased bg-[#030014] overflow-y-scroll overflow-x-hidden `}
       >
         <LenisProvider />
         <StarCanvas />

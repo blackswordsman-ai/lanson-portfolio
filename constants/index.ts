@@ -258,15 +258,15 @@ export const Skill_data = [
       duration: 0.7,
       hoverEffect: "glow"
     },
-    {
-      skill_name: "Postger SQL",
-      icon: "logos:postgresql",
-      size: 80,
-      animation: "fadeInDown",
-      delay: 0.5,
-      duration: 0.7,
-      hoverEffect: "pulse"
-    },
+    // {
+    //   skill_name: "Postger SQL",
+    //   icon: "logos:postgresql",
+    //   size: 80,
+    //   animation: "fadeInDown",
+    //   delay: 0.5,
+    //   duration: 0.7,
+    //   hoverEffect: "pulse"
+    // },
     {
       skill_name: "My SQL",
       icon: "logos:mysql-icon",
@@ -284,6 +284,15 @@ export const Skill_data = [
       delay: 0.7,
       duration: 0.7,
       hoverEffect: "rotate"
+    },
+    {
+      skill_name: "GraphQL",
+      icon: "logos:graphql",
+      size: 80,
+      animation: "fadeInUp",
+      delay: 0.8,
+      duration: 0.7,
+      hoverEffect: "glow"
     }
   ];
   

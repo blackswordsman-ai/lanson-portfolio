@@ -32,7 +32,7 @@ const SkillText = () => {
           variants={slideInFromTop}
           className="welcome-box py-[8px] px-[12px] border border-purple-500/20 opacity-[0.9] rounded-full flex items-center gap-2 backdrop-blur-md bg-black/30 shadow-[0_2px_10px_rgba(168,85,247,0.15)]"
         >
-          <SparklesIcon className="text-purple-400/90 mr-[10px] h-5 w-5 drop-shadow-[0_0_4px_rgba(168,85,247,0.3)]" />
+          {/* <SparklesIcon className="text-purple-400/90 mr-[10px] h-5 w-5 drop-shadow-[0_0_4px_rgba(168,85,247,0.3)]" /> */}
           <h1 className="Welcome-text text-[13px]">
            Think better with Next js 13 
           </h1>
