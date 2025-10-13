@@ -218,29 +218,38 @@ export default function Footer() {
           <div className="flex justify-end items-center gap-4">
             <motion.a
               href="https://github.com/blackswordsman-ai"
-              className="p-3 rounded-full bg-white/10 hover:bg-[#7C3AED]/30 transition-all duration-300 border border-white/20 hover:border-[#7C3AED]/50"
+              className="p-3 rounded-full bg-white/10 hover:bg-[#7C3AED]/30 transition-all duration-300 border border-white/20 hover:border-[#7C3AED]/50 cursor-pointer hover:shadow-lg hover:shadow-[#7C3AED]/20"
               aria-label="GitHub"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              style={{ cursor: 'pointer' }}
+              onClick={(e) => {
+                e.preventDefault();
+                window.open("https://github.com/blackswordsman-ai", "_blank", "noopener,noreferrer");
+              }}
             >
-              <FaGithub size={24} color="#7C3AED" />
- 
+              <FaGithub size={24} color="#7C3AED" className="transition-colors duration-300 hover:text-white" />
             </motion.a>
 
             <motion.a
-              href=" https://www.linkedin.com/in/lanson-johnson-b57b42279/"
-              className="p-3 rounded-full bg-white/10 hover:bg-[#7C3AED]/30 transition-all duration-300 border border-white/20 hover:border-[#7C3AED]/50"
+              href="https://www.linkedin.com/in/lanson-johnson-b57b42279/"
+              className="p-3 rounded-full bg-white/10 hover:bg-[#7C3AED]/30 transition-all duration-300 border border-white/20 hover:border-[#7C3AED]/50 cursor-pointer hover:shadow-lg hover:shadow-[#7C3AED]/20"
               aria-label="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              style={{ cursor: 'pointer' }}
+              onClick={(e) => {
+                e.preventDefault();
+                window.open("https://www.linkedin.com/in/lanson-johnson-b57b42279/", "_blank", "noopener,noreferrer");
+              }}
             >
-              <FaLinkedin size={24} color="#7C3AED" />
+              <FaLinkedin size={24} color="#7C3AED" className="transition-colors duration-300 hover:text-white" />
             </motion.a>
           </div>
         </motion.div>

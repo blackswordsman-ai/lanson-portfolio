@@ -18,7 +18,7 @@ const experiences: Experience[] = [
     company: 'Adam Finastra',
     position: 'Full Stack MERN Developer',
     duration: 'Present',
-    location: 'Dubai Client',
+    location: 'Dubai Based Company',
     current: true,
     responsibilities: [
       'Developed and maintained full-stack web applications using MERN stack',
