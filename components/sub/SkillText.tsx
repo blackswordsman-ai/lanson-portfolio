@@ -30,11 +30,11 @@ const SkillText = () => {
     >
          <motion.div
           variants={slideInFromTop}
-          className="welcome-box py-[8px] px-[12px] border border-purple-500/20 opacity-[0.9] rounded-full flex items-center gap-2 backdrop-blur-md bg-black/30 shadow-[0_2px_10px_rgba(168,85,247,0.15)]"
+          className="welcome-box py-[10px] px-[16px] border border-purple-500/30 opacity-[0.95] rounded-full flex items-center gap-3 backdrop-blur-md bg-gradient-to-r from-purple-900/20 to-purple-800/20 shadow-[0_4px_20px_rgba(168,85,247,0.25)]"
         >
-          {/* <SparklesIcon className="text-purple-400/90 mr-[10px] h-5 w-5 drop-shadow-[0_0_4px_rgba(168,85,247,0.3)]" /> */}
-          <h1 className="Welcome-text text-[13px]">
-           Think better with Next js 13 
+          <SparklesIcon className="text-purple-400/90 h-4 w-4 drop-shadow-[0_0_6px_rgba(168,85,247,0.4)]" />
+          <h1 className="Welcome-text text-[14px] font-medium">
+           Crafting with cutting-edge technology
           </h1>
         </motion.div>
         <motion.div
@@ -43,21 +43,21 @@ const SkillText = () => {
         >
           {/* Base text (gray) */}
           <span className='text-gray-400/70'>
-            Making apps with modern technologies
+            Building the future with innovative solutions
           </span>
           {/* Animated gradient overlay reveal */}
           <motion.span
             ref={titleRef}
             className='absolute inset-0 text-transparent bg-clip-text drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'
             style={{
-              backgroundImage: 'linear-gradient(90deg, rgba(168,85,247,1) 0%, rgba(190,186,255,1) 50%, rgba(34,211,238,1) 100%)',
+              backgroundImage: 'linear-gradient(90deg, rgba(168,85,247,1) 0%, rgba(236,72,153,1) 35%, rgba(34,211,238,1) 70%, rgba(16,185,129,1) 100%)',
               backgroundPosition: 'left',
               backgroundSize: bgSize as unknown as string,
               opacity: baseOpacity as unknown as number,
             }}
             aria-hidden
           >
-            Making apps with modern technologies
+            Building the future with innovative solutions
           </motion.span>
         </motion.div>
         <motion.div
@@ -65,19 +65,20 @@ const SkillText = () => {
             hidden: { opacity: 0, scale: 0.98 },
             visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
           }}
-          className='h-[2px] w-[56px] sm:w-[72px] md:w-[84px] rounded-full bg-gradient-to-r from-purple-500/60 via-purple-300/60 to-cyan-400/60 mb-3'
+          className='h-[3px] w-[80px] sm:w-[100px] md:w-[120px] rounded-full bg-gradient-to-r from-purple-500/80 via-pink-500/60 to-cyan-400/80 mb-4 shadow-[0_0_10px_rgba(168,85,247,0.3)]'
         />
         <motion.div
         variants={slideInFromRight(0.5)}
-        className='cursive text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] mb-8 mt-[4px] text-center italic tracking-wide drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]'
+        className='text-[15px] sm:text-[17px] md:text-[19px] lg:text-[21px] mb-8 mt-[6px] text-center font-light tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]'
         >
             <motion.span
-              initial={{ color: 'rgba(156,163,175,0.6)' }}
-              whileInView={{ color: 'rgba(229,231,235,0.9)' }}
+              initial={{ color: 'rgba(156,163,175,0.7)' }}
+              whileInView={{ color: 'rgba(229,231,235,0.95)' }}
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.8 }}
+              className="bg-gradient-to-r from-gray-300 to-gray-100 bg-clip-text text-transparent"
             >
-              Never miss a task, deadline or idea
+              Transforming ideas into exceptional digital experiences
             </motion.span>
 
         </motion.div>

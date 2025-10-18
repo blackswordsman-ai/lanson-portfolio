@@ -1,200 +1,113 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromTop } from "@/utils/motion";
+import Image from "next/image";
+
+const slideInFromTop = {
+  hidden: { y: -50, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: { duration: 0.5 }
+  }
+};
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async () => {
-    // Validate form data
-    if (!formData.name || !formData.email || !formData.message) {
-      setSubmitStatus("error");
-      return;
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setSubmitStatus("error");
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setSubmitStatus("idle"), 5000);
-      } else {
-        console.error('Form submission error:', result.error);
-        setSubmitStatus("error");
-        setTimeout(() => setSubmitStatus("idle"), 3000);
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      setSubmitStatus("error");
-      setTimeout(() => setSubmitStatus("idle"), 3000);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  // Your WhatsApp number (include country code without + or spaces)
+  const WHATSAPP_NUMBER = "919947365155"; // Replace with your number
+  const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
   return (
-    <div id="contact" className="relative w-full min-h-[50vh] sm:min-h-[60vh] overflow-hidden bg-black -mt-8 sm:-mt-12">
+    <div id="contact" className="relative w-full min-h-screen overflow-hidden bg-black py-20">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-black/40 pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full min-h-[50vh] sm:min-h-[60vh] px-4 py-6 sm:py-8">
-        <div className="w-full max-w-xl bg-gray-950/30 backdrop-blur-md rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl shadow-purple-900/40 border border-gray-800/40">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full px-4">
+        <div className="w-full max-w-2xl bg-gray-950/50 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl shadow-purple-900/40 border border-gray-800/40">
           {/* Header */}
           <motion.div
             variants={slideInFromTop}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.4 }}
-            className="text-center mb-6"
+            className="text-center mb-8"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
               Get in <span className="text-purple-500">Touch</span>
             </h2>
-            <p className="text-gray-400 text-sm sm:text-base md:text-lg">
-              Lets collaborate on your next project
+            <p className="text-gray-400 text-base md:text-lg mb-6">
+              Scan the QR code to connect with Lanson Johnson on WhatsApp
             </p>
           </motion.div>
 
-          {/* Form */}
+          {/* QR Code Section */}
           <motion.div
             variants={slideInFromTop}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.4 }}
+            className="flex flex-col items-center space-y-8"
           >
-            <div className="space-y-5 sm:space-y-6">
-              {/* Name */}
-         {/* Name */}
-<div className="relative group">
-  <input
-    type="text"
-    id="name"
-    name="name"
-    value={formData.name}
-    onChange={handleChange}
-    className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-white/80 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 shadow-lg shadow-black/50 text-sm sm:text-base"
-    placeholder="Your Name"
-  />
-  <label
-    htmlFor="name"
-    className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
-  >
-    Name
-  </label>
-</div>
+            {/* QR Code Container */}
+            <div className="relative">
+              {/* Your actual WhatsApp QR Code */}
+              <div className="w-64 h-64 bg-white rounded-2xl p-4 shadow-2xl shadow-purple-900/30 border-4 border-purple-500/20">
+                <Image 
+                  src="/Screenshot_2025-10-18-18-09-30-866_com.whatsapp.jpg" 
+                  alt="Lanson Johnson WhatsApp QR Code" 
+                  width={256}
+                  height={256}
+                  className="w-full h-full object-contain rounded-xl"
+                />
+              </div>
+              
+              {/* Animated border effect */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-purple-500/30 animate-pulse"></div>
+            </div>
 
-{/* Email */}
-<div className="relative group">
-  <input
-    type="email"
-    id="email"
-    name="email"
-    value={formData.email}
-    onChange={handleChange}
-    className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-white/80 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 shadow-lg shadow-black/50 text-sm sm:text-base"
-    placeholder="Your Email"
-  />
-  <label
-    htmlFor="email"
-    className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
-  >
-    Email
-  </label>
-</div>
+            {/* Instructions */}
+            <div className="text-center space-y-4">
+              <div className="flex items-center justify-center gap-3 text-green-400">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <span className="text-lg font-semibold">Connect via WhatsApp</span>
+              </div>
+              
+              <div className="space-y-3 text-gray-300">
+                <p className="text-base">📱 <strong>Step 1:</strong> Open WhatsApp on your phone</p>
+                <p className="text-base">📷 <strong>Step 2:</strong> Tap the three dots menu → Linked Devices</p>
+                <p className="text-base">🔍 <strong>Step 3:</strong> Scan this QR code</p>
+                <p className="text-base">💬 <strong>Step 4:</strong> Start chatting with me!</p>
+              </div>
+            </div>
 
-{/* Message */}
-<div className="relative group">
-  <textarea
-    id="message"
-    name="message"
-    value={formData.message}
-    onChange={handleChange}
-    rows={4}
-    className="peer w-full px-4 sm:px-5 pt-4 sm:pt-5 pb-2 sm:pb-3 bg-gray-900/70 border border-white/80 rounded-xl text-white placeholder-transparent focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all duration-300 resize-none shadow-lg shadow-black/50 text-sm sm:text-base"
-    placeholder="Your Message"
-  />
-  <label
-    htmlFor="message"
-    className="absolute left-4 sm:left-5 top-2 sm:top-3 text-gray-400 text-sm transition-all duration-300 peer-placeholder-shown:top-4 sm:peer-placeholder-shown:top-5 peer-placeholder-shown:text-gray-500 peer-placeholder-shown:text-base peer-focus:top-2 sm:peer-focus:top-3 peer-focus:text-purple-500 peer-focus:text-sm"
-  >
-    Message
-  </label>
-</div>
-
-
-              {/* Button */}
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className="flex items-center justify-center gap-2 mx-auto  max-w-xs px-5 py-8 sm:py-3 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 disabled:bg-gray-700 cursor-pointer text-white font-bold text-sm sm:text-base rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-950 shadow-lg shadow-purple-900/30"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                {!isSubmitting && (
-                  <span className="text-white font-bold text-sm sm:text-base">
-                    &rarr;
-                  </span>
-                )}
-              </button>
-
-              {/* Status Messages */}
-              {submitStatus === "success" && (
-                <div className="mt-4 p-3 sm:p-4 bg-green-500/10 border border-green-500/50 rounded-xl text-green-400 text-center text-sm sm:text-base">
-                  <div className="flex items-center justify-center gap-2">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Message sent successfully! I&apos;ll get back to you soon.
-                  </div>
-                </div>
-              )}
-              {submitStatus === "error" && (
-                <div className="mt-4 p-3 sm:p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-center text-sm sm:text-base">
-                  <div className="flex items-center justify-center gap-2">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                    Failed to send message. Please check your details and try again.
-                  </div>
-                </div>
-              )}
+            {/* Alternative Contact Methods */}
+            <div className="w-full border-t border-gray-700 pt-6">
+              <p className="text-center text-gray-400 mb-4">Or contact me directly:</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition-all duration-300 hover:scale-105"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                  <span>Open WhatsApp</span>
+                </a>
+                
+                <a
+                  href={`tel:${WHATSAPP_NUMBER}`}
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-all duration-300 hover:scale-105"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                  <span>Call Me</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

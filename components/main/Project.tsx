@@ -10,6 +10,7 @@ type ProjectItem = {
   title: string;
   description: string;
   technologies: string[];
+  link?: string;
 }
 
 const projects: ProjectItem[] = [
@@ -42,6 +43,25 @@ const projects: ProjectItem[] = [
     title: 'Email Communication Platform',
     description: 'Advanced email management system with templates, automation, analytics, and team collaboration features for business communications.',
     technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Nodemailer', 'Socket.io'],
+  },
+  {
+    src: '/livera.png',
+    title: 'Livera v-Cart App',
+    description: 'Collaborative e-commerce platform with real-time cart sharing, group purchasing, and social shopping features for enhanced user engagement.',
+    technologies: ['React Native', 'Node.js', 'MongoDB', 'Socket.io', 'Stripe'],
+  },
+  {
+    src: '/taskify.png',
+    title: 'Taskify Task Manager',
+    description: 'Comprehensive task management platform with project organization, team collaboration, deadline tracking, and productivity analytics dashboard.',
+    technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+  },
+  {
+    src: '/vote-app.png',
+    title: 'Decentralized Voting System',
+    description: 'Blockchain-based voting platform ensuring transparency, immutability, and security for democratic processes with smart contract integration.',
+    technologies: ['Solidity', 'Web3.js', 'React', 'Ethereum', 'MetaMask'],
+    link: 'https://dapp-voting-app.netlify.app/',
   }
 ]
 
@@ -130,6 +150,7 @@ const Project = () => {
                   title={project.title}
                   description={project.description}
                   technologies={project.technologies}
+                  link={project.link}
                 />
               </motion.div>
             ))}

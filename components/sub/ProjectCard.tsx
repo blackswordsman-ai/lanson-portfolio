@@ -8,9 +8,10 @@ interface Props {
   description: string
   technologies?: string[]
   onClick?: () => void
+  link?: string
 }
 
-const ModernProjectCard = ({ src, title, description, technologies, onClick }: Props) => {
+const ModernProjectCard = ({ src, title, description, technologies, onClick, link }: Props) => {
   return (
     <motion.div
       className="cursor-pointer w-full max-w-sm mx-auto flex flex-col rounded-2xl bg-black/40 backdrop-blur-lg border border-white/10 overflow-hidden shadow-lg shadow-black/30 group transition-all duration-300 h-[480px] sm:h-[520px] md:h-[540px] lg:h-[560px]"
@@ -19,7 +20,13 @@ const ModernProjectCard = ({ src, title, description, technologies, onClick }: P
       whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ type: "spring", stiffness: 120, damping: 12 }}
-      onClick={onClick}
+      onClick={() => {
+        if (link) {
+          window.open(link, '_blank', 'noopener,noreferrer')
+        } else if (onClick) {
+          onClick()
+        }
+      }}
     >
       {/* Image */}
       <div className="relative w-full h-48 sm:h-52 md:h-56 lg:h-60 overflow-hidden flex-shrink-0">

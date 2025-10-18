@@ -93,7 +93,11 @@ const Navbar: React.FC = () => {
       }
     }
 
-    setMenuOpen(!menuOpen);
+    const newMenuState = !menuOpen;
+    setMenuOpen(newMenuState);
+
+    // Allow background scroll but keep modal fixed
+    // Don't prevent background scroll - let it scroll behind the modal
   };
 
   const toggleMusic = () => {
@@ -155,20 +159,26 @@ const Navbar: React.FC = () => {
       menuClickRef.current?.play();
     } catch {}
 
+    // Close menu
     setMenuOpen(false);
     
-    if (href.startsWith('/')) {
-      window.location.href = href;
-    } else {
-      const element = document.getElementById(href.substring(1));
-      if (element) {
-        const offsetTop = element.offsetTop - 100;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
+    // Small delay to ensure menu closes before navigation
+    setTimeout(() => {
+      if (href.startsWith('/')) {
+        window.location.href = href;
+      } else {
+        const element = document.getElementById(href.substring(1));
+        if (element) {
+          // Adjust offset for navbar height and better positioning
+          const navbarHeight = 100;
+          const offsetTop = element.offsetTop - navbarHeight - 20;
+          window.scrollTo({
+            top: Math.max(0, offsetTop),
+            behavior: 'smooth'
+          });
+        }
       }
-    }
+    }, 150);
   };
 
   const navbarClasses = `
@@ -248,37 +258,57 @@ const Navbar: React.FC = () => {
 
         {/* Modal Overlay + Centered Menu - Fixed with persistent blur */}
         {menuOpen && (
-          <div className="fixed inset-0 z-40" style={{ position: 'fixed' }}>
-            <div 
-              className="fixed inset-0 bg-black/70 backdrop-blur-md" 
-              onClick={() => setMenuOpen(false)}
-              style={{ position: 'fixed' }}
-            />
-            <div 
-              className="fixed inset-0 flex items-center justify-center p-6 overflow-y-auto"
-              ref={mobileMenuRef}
-              style={{ position: 'fixed' }}
-            >
-              <div className="flex flex-col items-center gap-8 sm:gap-10 py-8">
-                {navLinks.map((link, index) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.href);
-                    }}
-                    className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-400 hover:to-cyan-400 transition-all duration-200 font-semibold hover:scale-105"
-                    style={{
-                      fontSize: 'clamp(20px, 4vw, 52px)',
-                      letterSpacing: '0.04em',
-                      animation: `fadeInUp 0.4s ease-out ${index * 70}ms both`,
-                    }}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
+          <div 
+            className="fixed inset-0 z-40 backdrop-blur-persistent"
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(0, 0, 0, 0.9)',
+              backdropFilter: 'blur(25px) saturate(200%)',
+              WebkitBackdropFilter: 'blur(25px) saturate(200%)',
+            }}
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+        
+        {/* Menu content - separate from backdrop */}
+        {menuOpen && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 pointer-events-none"
+            ref={mobileMenuRef}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              height: '100vh',
+            }}
+          >
+            <div className="flex flex-col items-center gap-8 sm:gap-10 py-8 pointer-events-auto">
+              {navLinks.map((link, index) => (
+                <button
+                  key={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href);
+                  }}
+                  className="text-white/90 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-400 hover:to-cyan-400 transition-all duration-200 font-semibold hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 rounded-lg px-4 py-2"
+                  style={{
+                    fontSize: 'clamp(20px, 4vw, 52px)',
+                    letterSpacing: '0.04em',
+                    animation: `fadeInUp 0.4s ease-out ${index * 70}ms both`,
+                  }}
+                >
+                  {link.name}
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -294,6 +324,14 @@ const Navbar: React.FC = () => {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+        
+        /* Ensure backdrop blur is always applied */
+        .backdrop-blur-persistent {
+          backdrop-filter: blur(25px) saturate(200%) !important;
+          -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+          will-change: backdrop-filter;
+          background: rgba(0, 0, 0, 0.9) !important;
         }
       `}</style>
     </nav>
