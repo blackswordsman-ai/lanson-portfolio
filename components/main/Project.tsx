@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { slideInFromTop } from '@/utils/motion'
 import ProjectCard from '../sub/ProjectCard'
@@ -67,6 +67,119 @@ const projects: ProjectItem[] = [
 
 
 const Project = () => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [currentScroll, setCurrentScroll] = useState(0)
+  const [maxScroll, setMaxScroll] = useState(0)
+  const [isAtEnd, setIsAtEnd] = useState(false)
+
+  // Pause auto-scroll helper
+  const pauseTimeoutRef = useRef<number | null>(null)
+  const pauseAutoScroll = (ms = 3000) => {
+    setIsHovered(true)
+    if (pauseTimeoutRef.current) window.clearTimeout(pauseTimeoutRef.current)
+    pauseTimeoutRef.current = window.setTimeout(() => setIsHovered(false), ms)
+  }
+
+  // Manual scroll forward/backward - scroll by 2 cards
+  const scrollBy = (direction: 'forward' | 'backward') => {
+    const el = scrollContainerRef.current
+    if (!el) return
+    
+    // Calculate width of 2 cards including gap
+    const cardWidth = 520 // Base card width
+    const gap = 24 // Gap between cards (gap-6 = 24px)
+    const twoCardsWidth = (cardWidth * 2) + gap
+    
+    const delta = direction === 'forward' ? twoCardsWidth : -twoCardsWidth
+    const target = el.scrollLeft + delta
+    el.scrollTo({ left: target, behavior: 'smooth' })
+    setCurrentScroll(target)
+    pauseAutoScroll()
+  }
+
+  // Check if at end of scroll
+  useEffect(() => {
+    if (maxScroll <= 0) return
+    
+    const halfScroll = maxScroll / 2
+    const atEnd = currentScroll >= halfScroll
+    setIsAtEnd(atEnd)
+  }, [currentScroll, maxScroll])
+
+  // Check if project section is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0.3 }
+    )
+
+    const projectSection = document.getElementById('project')
+    if (projectSection) {
+      observer.observe(projectSection)
+    }
+
+    return () => {
+      if (projectSection) {
+        observer.unobserve(projectSection)
+      }
+    }
+  }, [])
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isInView || isHovered) return
+
+    const scrollContainer = scrollContainerRef.current
+    if (!scrollContainer) return
+
+    const scrollWidth = scrollContainer.scrollWidth
+    const clientWidth = scrollContainer.clientWidth
+    const maxScrollValue = scrollWidth - clientWidth
+    
+    if (maxScrollValue <= 0) return
+
+    setMaxScroll(maxScrollValue)
+
+    const scrollStep = 1.2 // pixels per frame - faster speed
+    const scrollInterval = 12 // ~83fps - higher frequency
+    const halfScrollValue = maxScrollValue / 2 // Reset at halfway point for seamless loop
+
+    const autoScroll = () => {
+      if (!isInView || isHovered) return
+
+      setCurrentScroll(prev => {
+        const newScroll = prev + scrollStep
+        // Reset to beginning when we reach halfway (seamless infinite scroll)
+        if (newScroll >= halfScrollValue) {
+          return 0
+        }
+        return newScroll
+      })
+    }
+
+    const interval = setInterval(autoScroll, scrollInterval)
+    return () => clearInterval(interval)
+  }, [isInView, isHovered])
+
+  // Apply scroll position
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current
+    if (scrollContainer) {
+      scrollContainer.scrollLeft = currentScroll
+    }
+  }, [currentScroll])
+
+  // Cleanup pause timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) window.clearTimeout(pauseTimeoutRef.current)
+    }
+  }, [])
+
   return (
     <section id='project' className='relative flex flex-col items-center justify-center pt-8 pb-6 sm:pt-12 sm:pb-8 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16 px-4 sm:px-6 md:px-20 overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-[700px]'>
       {/* Background image with subtle motion */}
@@ -134,16 +247,70 @@ const Project = () => {
           </motion.p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Projects Horizontal Flex */}
         <div className='w-full relative z-30'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8'>
+          {/* Scroll indicators */}
+          <div className='flex justify-between items-center mb-4 px-2'>
+            <div className='flex items-center space-x-2'>
+              <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${isInView ? 'bg-purple-400' : 'bg-gray-500'}`} />
+              
+            </div>
+            {/* Progress bar */}
+            <div className='flex items-center space-x-2'>
+              <div className='w-16 h-1 bg-gray-700 rounded-full overflow-hidden'>
+                <div 
+                  className='h-full bg-gradient-to-r from-purple-400 via-blue-300 to-cyan-400 rounded-full transition-all duration-100'
+                  style={{ 
+                    width: `${maxScroll > 0 ? (currentScroll / (maxScroll / 2)) * 100 : 0}%` 
+                  }}
+                />
+              </div>
+              <div className='flex items-center space-x-1'>
+                <div className='w-1 h-1 rounded-full bg-gray-600' />
+                <div className='w-1 h-1 rounded-full bg-gray-600' />
+                <div className='w-1 h-1 rounded-full bg-gray-600' />
+              </div>
+            </div>
+          </div>
+
+          {/* Arrow - fixed position, transparent icon, toggles direction only */}
+          <button
+            type='button'
+            aria-label={isAtEnd ? 'Scroll backward' : 'Scroll forward'}
+            onClick={() => scrollBy(isAtEnd ? 'backward' : 'forward')}
+            className='hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-40 items-center justify-center w-16 h-16 rounded-full bg-transparent text-white/60 hover:text-white transition-transform duration-300 hover:scale-110'
+          >
+            <svg 
+              xmlns='http://www.w3.org/2000/svg' 
+              viewBox='0 0 24 24' 
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              className={`w-10 h-10 transition-transform duration-500 ${isAtEnd ? 'rotate-180' : ''}`}
+            >
+              <polyline points='9 6 15 12 9 18' />
+            </svg>
+          </button>
+
+          <div 
+            ref={scrollContainerRef}
+            className='flex flex-row gap-4 sm:gap-6 lg:gap-8 overflow-x-auto pb-4 scrollbar-hidden transition-all duration-300'
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onScroll={(e) => setCurrentScroll((e.target as HTMLDivElement).scrollLeft)}
+            style={{ scrollBehavior: 'smooth' }}
+          >
+            {/* First set of cards */}
             {projects.map((project, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={`first-${index}`}
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.55, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                className="flex-shrink-0 w-[520px] sm:w-[560px] md:w-[620px] lg:w-[680px]"
               >
                 <ProjectCard
                   src={project.src}
@@ -154,6 +321,38 @@ const Project = () => {
                 />
               </motion.div>
             ))}
+            {/* Duplicate set for seamless infinite scroll */}
+            {projects.map((project, index) => (
+              <motion.div
+                key={`second-${index}`}
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.55, delay: (index + projects.length) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                className="flex-shrink-0 w-[520px] sm:w-[560px] md:w-[620px] lg:w-[680px]"
+              >
+                <ProjectCard
+                  src={project.src}
+                  title={project.title}
+                  description={project.description}
+                  technologies={project.technologies}
+                  link={project.link}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Manual scroll hint */}
+          <div className='flex justify-center mt-4'>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              className='flex items-center space-x-2 text-xs text-gray-400'
+            >
+              <span>Hover to pause auto-scroll</span>
+              <div className='w-1 h-1 bg-gray-400 rounded-full animate-pulse' />
+            </motion.div>
           </div>
         </div>
 
