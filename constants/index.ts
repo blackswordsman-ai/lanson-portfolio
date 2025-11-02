@@ -209,6 +209,15 @@ export const Skill_data = [
       delay: 1.0,
       duration: 0.6,
       hoverEffect: "bounce"
+    },
+    {
+      skill_name: "React Native",
+      icon: "simple-icons:reactnative",
+      size: 80,
+      animation: "rotateIn",
+      delay: 1.1,
+      duration: 0.6,
+      hoverEffect: "glow"
     }
   ];
   
@@ -297,10 +306,15 @@ export const Skill_data = [
   ];
   
   export const Full_stack = [
-   
-  
-   
-   
+    {
+      skill_name: "React Native",
+      icon: "logos:react",
+      size: 80,
+      animation: "zoomIn",
+      delay: 0,
+      duration: 0.6,
+      hoverEffect: "glow"
+    }
   ];
   
   

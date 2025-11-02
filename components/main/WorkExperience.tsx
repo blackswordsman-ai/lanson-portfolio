@@ -1,6 +1,6 @@
 "use client"
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, PanInfo } from 'framer-motion'
 import { slideInFromTop } from '@/utils/motion'
 
 interface Experience {
@@ -32,6 +32,22 @@ const experiences: Experience[] = [
 ]
 
 const WorkExperience = () => {
+  const [isDragging, setIsDragging] = useState(false)
+
+  const handleDrag = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    // Scroll based on drag direction
+    // Dragging down moves content up, dragging up moves content down
+    const scrollAmount = Math.abs(info.delta.y) * 3
+    
+    if (info.delta.y > 0) {
+      // Drag down -> scroll up (content moves up)
+      window.scrollBy(0, -scrollAmount)
+    } else if (info.delta.y < 0) {
+      // Drag up -> scroll down (content moves down)
+      window.scrollBy(0, scrollAmount)
+    }
+  }
+
   return (
     <section 
       id='experience' 
@@ -88,7 +104,7 @@ const WorkExperience = () => {
         {/* Experience Cards */}
         <div className='relative'>
           {/* Timeline line */}
-          <div className='absolute left-4 sm:left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500/40 via-purple-300/40 to-cyan-400/40 transform md:-translate-x-1/2' />
+          <div className='absolute left-4 sm:left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500/40 via-purple-300/40 to-cyan-400/40 transform md:-translate-x-1/2 pointer-events-none' />
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -101,16 +117,36 @@ const WorkExperience = () => {
             >
               {/* Timeline dot */}
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                drag="y"
+                dragConstraints={{ top: -100, bottom: 100 }}
+                dragElastic={0.5}
+                dragSnapToOrigin={true}
+                onDrag={handleDrag}
+                onDragStart={() => setIsDragging(true)}
+                onDragEnd={() => setIsDragging(false)}
+                initial={{ scale: 0, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                whileHover={{ scale: 1.2 }}
+                whileDrag={{ scale: 1.3, cursor: 'grabbing' }}
                 viewport={{ once: false, amount: 0.5 }}
-                transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
-                className='absolute left-[7px] sm:left-[23px] md:left-1/2 top-8 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 border-4 border-[#030014] shadow-lg shadow-purple-500/50 z-10'
+                transition={{ 
+                  scale: { duration: 0.4, delay: index * 0.2 + 0.3 },
+                  opacity: { duration: 0.3, delay: index * 0.2 + 0.2 }
+                }}
+                style={{ 
+                  cursor: 'grab',
+                  touchAction: 'none',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  pointerEvents: 'auto'
+                }}
+                className='absolute left-[7px] sm:left-[23px] md:left-1/2 top-8 transform md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 border-4 border-[#030014] shadow-lg shadow-purple-500/50 z-50'
               >
-                {exp.current && (
+                {exp.current && !isDragging && (
                   <motion.div
                     animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0, 0.8] }}
                     transition={{ duration: 2, repeat: Infinity }}
+                    style={{ pointerEvents: 'none' }}
                     className='absolute inset-0 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400'
                   />
                 )}

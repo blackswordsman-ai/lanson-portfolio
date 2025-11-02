@@ -12,89 +12,38 @@ import { Icon } from "@iconify/react";
 
 export default function Footer() {
   const scrollToTop = () => {
-    console.log("Scroll to top function called");
-    
-    if (typeof window !== "undefined") {
-      // Method 1: Use Lenis if available
-      if (window.lenis && typeof window.lenis.scrollTo === "function") {
-        console.log("Using Lenis to scroll to top");
-        try {
-          window.lenis.scrollTo(0, { 
-            duration: 2,
-            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-          });
-          return;
-        } catch (error) {
-          console.log("Lenis scroll failed, trying fallback:", error);
-        }
-      }
-      
-      // Method 2: Try to scroll to hero section
-      const heroElement = document.getElementById("hero");
-      if (heroElement) {
-        console.log("Found hero element, scrolling to it");
-        heroElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest"
-        });
-        return;
-      }
-      
-      // Method 3: Standard smooth scroll to top
-      console.log("Using standard window scroll");
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth"
-      });
-      
-      // Method 4: Fallback - immediate scroll
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 1000);
+    // Try Lenis first if available
+    if (typeof window !== "undefined" && window.lenis && typeof window.lenis.scrollTo === "function") {
+      window.lenis.scrollTo(0, { duration: 2 });
+      return;
     }
+    
+    // Scroll to hero section as main method
+    const heroElement = document.getElementById("hero");
+    if (heroElement) {
+      heroElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    
+    // Fallback to window scroll
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollToSection = (sectionId: string) => {
-    console.log(`Scrolling to section: ${sectionId}`);
-
     const element = document.getElementById(sectionId);
     if (element) {
-      console.log(`Found element: ${sectionId}`);
-
-      // Simple scrollIntoView approach first
+      // Try Lenis first if available
+      if (typeof window !== "undefined" && window.lenis && typeof window.lenis.scrollTo === "function") {
+        window.lenis.scrollTo(element, { duration: 1.5, offset: -80 });
+        return;
+      }
+      
+      // Fallback to native scroll
       element.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest",
       });
-
-      // Also try Lenis if available
-      try {
-        if (typeof window !== "undefined") {
-          const lenisInstance = (
-            window as {
-              lenis?: {
-                scrollTo: (
-                  target: number | Element,
-                  options?: { duration?: number; offset?: number }
-                ) => void;
-              };
-            }
-          ).lenis;
-          if (lenisInstance && typeof lenisInstance.scrollTo === "function") {
-            console.log("Using Lenis for smooth scroll");
-            lenisInstance.scrollTo(element, { duration: 1.5, offset: -80 });
-          }
-        }
-      } catch (error) {
-        console.log("Lenis scroll failed, using native scroll:", error);
-      }
-    } else {
-      console.log(`Element with id="${sectionId}" not found!`);
     }
   };
 
@@ -158,7 +107,6 @@ export default function Footer() {
               <motion.button
                 onClick={(e) => {
                   e.preventDefault();
-                  console.log("Projects button clicked");
                   scrollToSection("project");
                 }}
                 className="block text-lg hover:text-[#7C3AED] transition-colors font-semibold text-left cursor-pointer bg-transparent border-none p-0"
@@ -171,7 +119,6 @@ export default function Footer() {
               <motion.button
                 onClick={(e) => {
                   e.preventDefault();
-                  console.log("About Me button clicked");
                   scrollToSection("about");
                 }}
                 className="block text-lg hover:text-[#7C3AED] transition-colors font-semibold text-left cursor-pointer bg-transparent border-none p-0"
@@ -184,7 +131,6 @@ export default function Footer() {
               <motion.button
                 onClick={(e) => {
                   e.preventDefault();
-                  console.log("Contact button clicked");
                   scrollToSection("contact");
                 }}
                 className="block text-lg hover:text-[#7C3AED] transition-colors font-semibold text-left cursor-pointer bg-transparent border-none p-0"

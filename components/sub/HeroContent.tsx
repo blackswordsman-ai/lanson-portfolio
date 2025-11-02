@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   slideInFromLeft,
@@ -12,21 +12,60 @@ import Image from "next/image";
 
 const HeroContent = () => {
   const [displayedText, setDisplayedText] = useState("");
-  const fullText = "Welcome to my digital space";
+  
+  const texts = useMemo(() => [
+    "Welcome to my digital space",
+    "Building innovative solutions",
+    "Turning ideas into reality",
+    "Creating exceptional experiences"
+  ], []);
+
+  const currentTextIndexRef = useRef(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex));
-        currentIndex++;
+    const typeChar = (textIndex: number, charIndex: number, isDeleting: boolean) => {
+      const currentText = texts[textIndex];
+      
+      if (!isDeleting) {
+        // Typing forward
+        if (charIndex <= currentText.length) {
+          setDisplayedText(currentText.slice(0, charIndex));
+          if (charIndex < currentText.length) {
+            // Continue typing
+            timeoutRef.current = setTimeout(() => {
+              typeChar(textIndex, charIndex + 1, false);
+            }, 80);
+          } else {
+            // Finished typing, wait then start deleting
+            timeoutRef.current = setTimeout(() => {
+              typeChar(textIndex, charIndex, true);
+            }, 2000);
+          }
+        }
       } else {
-        clearInterval(typingInterval);
+        // Deleting backward
+        if (charIndex > 0) {
+          setDisplayedText(currentText.slice(0, charIndex - 1));
+          timeoutRef.current = setTimeout(() => {
+            typeChar(textIndex, charIndex - 1, true);
+          }, 50);
+        } else {
+          // Finished deleting, move to next text
+          const nextIndex = (textIndex + 1) % texts.length;
+          currentTextIndexRef.current = nextIndex;
+          typeChar(nextIndex, 0, false);
+        }
       }
-    }, 80);
+    };
 
-    return () => clearInterval(typingInterval);
-  }, []);
+    // Start typing immediately
+    typeChar(currentTextIndexRef.current, 0, false);
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [texts]);
 
   const handleScrollTo = (id: string) => {
     const element = document.getElementById(id);

@@ -123,7 +123,7 @@ const Skills = () => {
             />
           ))}
         </div>
-        <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-4'>FULL STACK</h3>
+        <h3 className='text-xs sm:text-sm uppercase tracking-widest text-gray-300/80 mt-4'>App Development</h3>
         <div className='flex flex-row justify-center flex-wrap mt-2 gap-3 sm:gap-4 md:gap-6 items-center'>
           {Full_stack.map((skill: Skill, index: number) =>(
             <SkillDataProvider 

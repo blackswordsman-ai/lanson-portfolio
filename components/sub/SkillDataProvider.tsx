@@ -42,10 +42,30 @@ const SkillDataProvider = ({
           hidden: { opacity: 0, y: -20, scale: 0.8 },
           visible: { opacity: 1, y: 0, scale: 1 },
         };
+      case "bounceIn":
+        return {
+          hidden: { opacity: 0, scale: 0.3, y: -10 },
+          visible: { opacity: 1, scale: 1, y: 0 },
+        };
       case "fadeInUp":
         return {
           hidden: { opacity: 0, y: 30 },
           visible: { opacity: 1, y: 0 },
+        };
+      case "fadeInDown":
+        return {
+          hidden: { opacity: 0, y: -30 },
+          visible: { opacity: 1, y: 0 },
+        };
+      case "fadeIn":
+        return {
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 },
+        };
+      case "fadeInLeft":
+        return {
+          hidden: { opacity: 0, x: -30 },
+          visible: { opacity: 1, x: 0 },
         };
       case "slideInLeft":
         return {
@@ -57,7 +77,32 @@ const SkillDataProvider = ({
           hidden: { opacity: 0, x: 30 },
           visible: { opacity: 1, x: 0 },
         };
+      case "slideInUp":
+        return {
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0 },
+        };
+      case "rotateIn":
+        return {
+          hidden: { opacity: 0, rotate: -200, scale: 0.5 },
+          visible: { opacity: 1, rotate: 0, scale: 1 },
+        };
+      case "zoomIn":
+        return {
+          hidden: { opacity: 0, scale: 0.5 },
+          visible: { opacity: 1, scale: 1 },
+        };
       case "flip":
+        return {
+          hidden: { opacity: 0, rotateY: -90 },
+          visible: { opacity: 1, rotateY: 0 },
+        };
+      case "flipInX":
+        return {
+          hidden: { opacity: 0, rotateX: 90 },
+          visible: { opacity: 1, rotateX: 0 },
+        };
+      case "flipInY":
         return {
           hidden: { opacity: 0, rotateY: -90 },
           visible: { opacity: 1, rotateY: 0 },
