@@ -23,6 +23,11 @@ const Project = dynamic(() => import('@/components/main/Project'), {
   ssr: false,
 });
 
+const MobileApp = dynamic(() => import('@/components/main/MobileApp'), {
+  loading: () => <div>Loading Mobile Apps...</div>,
+  ssr: false,
+});
+
 const WorkExperience = dynamic(() => import('@/components/main/WorkExperience'), {
   loading: () => <div>Loading Experience...</div>,
   ssr: false,
@@ -71,6 +76,16 @@ export default function Home() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <Project />
+        </motion.section>
+
+        <motion.section
+          id="mobile-apps"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <MobileApp />
         </motion.section>
 
         <motion.section
